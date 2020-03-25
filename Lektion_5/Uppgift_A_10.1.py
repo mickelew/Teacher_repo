@@ -16,7 +16,7 @@ print(cars_3,"\n")
 
 #Uppgift 10.2
 cars.extend(["BMW","Opel","Volvo"])
-cars.sort()
+cars.sort(reverse=True)
 print(cars,"\n")
 
 #Uppgift 10.3

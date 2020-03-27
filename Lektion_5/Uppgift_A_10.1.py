@@ -39,5 +39,5 @@ numbers_union=numbers1 | numbers2
 print(numbers_union,"\n")
 
 #Uppgift 15
-numbers_difference=numbers1 - numbers2
+numbers_difference=numbers1.difference(numbers2)
 print(numbers_difference)

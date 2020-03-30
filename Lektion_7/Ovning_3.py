@@ -1,5 +1,5 @@
 # Detta program skapar en randomiserad lista med heltal och ger talen på index 0 och 1 namnen A och B.
-# Sedan testas om A > B, är sant byter värdena plats i listan. 
+# Sedan testas om A > B, är det sant byter värdena plats i listan. 
 # Detta görs tills hela listan gåtts igenom.
 
 import random

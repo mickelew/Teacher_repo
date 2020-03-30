@@ -8,7 +8,7 @@ original_list = []
 def random_numbers_list(list_length = 10):
     """Låter användaren välja ett heltal som bestämmer hur lång lista som skapas.
       
-       Om inget heltal väljs, görs listan 10 heltal lång. """
+       Om inget heltal väljs, görs listan 10 heltal lång."""
 
     for i in range (0,list_length):
         x = random.randint(0, 99)
@@ -30,7 +30,10 @@ def name_element_B(name_list):
 
 
 def A_bigger_then_B(element_A, element_B):
-    """Kontrollerar om name_element_A är större än name_element_B """
+    """Kontrollerar om name_element_A är större än name_element_B.
+    
+       Om A är större än B, byter de plats med varandra och läggs längst
+       bak i listan. Annars läggs de bara sist i listan och testet fortsätter."""
         
     if element_A > element_B:
         original_list[0], original_list[1] = original_list[1], original_list[0]

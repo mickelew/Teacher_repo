@@ -61,7 +61,7 @@ while i < len(original_list):
     
     i += 1
 
-print("Listan är nu sorterad så variabeln B alltid kommer före variabeln A:")
+print("Listan är nu sorterad så det mindre talet alltid kommer först:")
 print(original_list)
 
 

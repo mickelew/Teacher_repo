@@ -13,15 +13,17 @@ class Dog:
     def add_breed(self, breed):
         self.breed = breed
 
-    def add_best_friend(self, bestFriend):
-        """ 'bestFriend' fylls i med dog_x.name för att lägga till en hund från instanserna. """
+    def add_best_friend(self, name):
+        """ 'name' fylls i med dog_x.name för att lägga till en hund från instanserna. """
         
         if len(self.bestFriend) < 1:
-            self.bestFriend = bestFriend
+            self.bestFriend.append(name)
+        
         elif len(self.bestFriend) >= 1 and self.breed.casefold() == self.multiple_friends.casefold():
-            self.bestFriend = bestFriend
+            self.bestFriend.append(name)
+        
         else:
-            print("Too many friends.")
+            print(f"{name} already has a best friend.")
 
     def add_favoriteToy(self, favoriteToy):
         self.favoriteToy = favoriteToy
@@ -44,9 +46,11 @@ dog_2 = Dog("Hilda", 2, "Siri Brattberg")
 dog_3 = Dog("Beppe", 10, "Karl Hermansson")
 dog_4 = Dog("Walle", 5, "Tony Irving")
 
-dog_1.add_breed("Golden Retriever")
+dog_1.add_breed("Newfoundland")
+dog_1.add_favoriteToy("Big balls")
 dog_1.add_best_friend(dog_2.name)
 dog_1.add_best_friend(dog_3.name)
 dog_1.add_best_friend(dog_4.name)
 
-print(dog_1.__dict__)
+#print(dog_1.__dict__)
+#print(dog_1.bestFriend)

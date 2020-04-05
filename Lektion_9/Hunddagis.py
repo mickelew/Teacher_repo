@@ -1,6 +1,7 @@
 #Class
 class Dog:
     
+
     def __init__(self, name, age, owner):
         self.name = name
         self.age = age
@@ -15,6 +16,8 @@ class Dog:
         """ 'bestFriend' fylls i med dog_x.name för att lägga till en hund från instanserna. """
         
         if len(self.bestFriend) < 1:
+            self.bestFriend = bestFriend
+        elif len(self.bestFriend) >= 1 and self.breed == "Golden Retriever":
             self.bestFriend = bestFriend
         else:
             print("Too many friends.")
@@ -40,9 +43,8 @@ dog_2 = Dog("Hilda", 2, "Siri Brattberg")
 dog_3 = Dog("Beppe", 10, "Karl Hermansson")
 dog_4 = Dog("Walle", 5, "Tony Irving")
 
-dog_1.add_breed("Golden Retriever")
+dog_1.add_breed("Newfoundland")
 dog_1.add_best_friend(dog_2.name)
+dog_1.add_best_friend(dog_3.name)
 
-
-print(f"{dog_1.name}'s best friend is {dog_1.bestFriend}.")
-print(dog_1.add_best_friend(dog_3.name))
+print(dog_1.__dict__)

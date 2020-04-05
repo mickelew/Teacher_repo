@@ -38,9 +38,27 @@ class Dog:
         self.owner = owner
 
     
+class Dog_daycare:
+    
+    def __init__(self, name_daycare, name_manager):
+        self.name_daycare = name_daycare
+        self.name_manager = name_manager
+        self.namelist_dogs = []
+    
+    def add_dog(self, name):
+        self.namelist_dogs.append(name)
+
+    def remove_dog(self, name):
+        self.namelist_dogs.remove(name)
+        
+    def set_boss_name(self, name):
+        self.name_manager = name
+    
 
 
-#Instance - Hämtar funktionen från 'class Employee'.
+#Instance - Hämtar funktionen från 'class Dog/Dog_daycare'.
+daycare_1 = Dog_daycare("Vacker Tass", "Geraldo Milan")
+
 dog_1 = Dog("Charlie", 7, "Michael Levin")
 dog_2 = Dog("Hilda", 2, "Siri Brattberg")
 dog_3 = Dog("Beppe", 10, "Karl Hermansson")
@@ -53,9 +71,14 @@ dog_1.add_best_friend(dog_3.name)
 dog_1.add_best_friend(dog_4.name)
 
 dog_2.add_breed("Newfoundland")
+dog_2.add_favoriteToy("Small balls")
 dog_2.add_best_friend(dog_3.name)
-dog_2.add_best_friend(dog_4.name)
 
-#print(dog_1.__dict__)
+daycare_1.add_dog(dog_1.__dict__)
+daycare_1.add_dog(dog_2.__dict__)
+daycare_1.add_dog(dog_3.__dict__)
+
+print(daycare_1.__dict__)
+
 print(dog_1.bestFriend)
 print(dog_2.bestFriend)

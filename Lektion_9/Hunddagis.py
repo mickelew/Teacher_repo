@@ -1,6 +1,7 @@
 #Class
 class Dog:
     
+    multiple_friends = "Golden Retriever"
 
     def __init__(self, name, age, owner):
         self.name = name
@@ -17,7 +18,7 @@ class Dog:
         
         if len(self.bestFriend) < 1:
             self.bestFriend = bestFriend
-        elif len(self.bestFriend) >= 1 and self.breed == "Golden Retriever":
+        elif len(self.bestFriend) >= 1 and self.breed.casefold() == self.multiple_friends.casefold():
             self.bestFriend = bestFriend
         else:
             print("Too many friends.")
@@ -43,8 +44,9 @@ dog_2 = Dog("Hilda", 2, "Siri Brattberg")
 dog_3 = Dog("Beppe", 10, "Karl Hermansson")
 dog_4 = Dog("Walle", 5, "Tony Irving")
 
-dog_1.add_breed("Newfoundland")
+dog_1.add_breed("Golden Retriever")
 dog_1.add_best_friend(dog_2.name)
 dog_1.add_best_friend(dog_3.name)
+dog_1.add_best_friend(dog_4.name)
 
 print(dog_1.__dict__)

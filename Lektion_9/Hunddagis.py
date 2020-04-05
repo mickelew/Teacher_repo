@@ -1,23 +1,48 @@
 #Class
-class Employee:
+class Dog:
     
-    def __init__(self, first, last, pay):
-        self.first = first
-        self.last = last
-        self.pay = pay
-        self.email = first + "." + last + "@gmail.com"
-    
+    def __init__(self, name, age, owner):
+        self.name = name
+        self.age = age
+        self.owner = owner
+        self.bestFriend = []
+
     #Method - Kräver '()' när den kallas på av programmet.
-    def fullname(self):
-        return "{} {}".format(self.first, self.last)
+    def add_breed(self, breed):
+        self.breed = breed
+
+    def add_best_friend(self, bestFriend):
+        """ 'bestFriend' fylls i med dog_x.name för att lägga till en hund från instanserna. """
+        
+        if len(self.bestFriend) < 1:
+            self.bestFriend = bestFriend
+        else:
+            print("Too many friends.")
+
+    def add_favoriteToy(self, favoriteToy):
+        self.favoriteToy = favoriteToy
+
+    def set_name(self, name):
+        self.name = name 
+    
+    def set_age(self, age):
+        self.age = age
+
+    def set_owner(self, owner):
+        self.owner = owner
+
+    
 
 
 #Instance - Hämtar funktionen från 'class Employee'.
-emp_1 = Employee("Michael", "Levin", 50000)
-emp_2 = Employee("Siri", "Brattberg", 55000)
+dog_1 = Dog("Charlie", 7, "Michael Levin")
+dog_2 = Dog("Hilda", 2, "Siri Brattberg")
+dog_3 = Dog("Beppe", 10, "Karl Hermansson")
+dog_4 = Dog("Walle", 5, "Tony Irving")
 
-#print(emp_1)
-#print(emp_2)
+dog_1.add_breed("Golden Retriever")
+dog_1.add_best_friend(dog_2.name)
 
-print(emp_1.fullname())
-print(emp_2.fullname())
+
+print(f"{dog_1.name}'s best friend is {dog_1.bestFriend}.")
+print(dog_1.add_best_friend(dog_3.name))

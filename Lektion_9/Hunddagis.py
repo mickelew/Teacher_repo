@@ -23,7 +23,7 @@ class Dog:
             self.bestFriend.append(name)
         
         else:
-            print(f"{name} already has a best friend.")
+            print(f"Your dog already has a best friend, {self.bestFriend[0]}.")
 
     def add_favoriteToy(self, favoriteToy):
         self.favoriteToy = favoriteToy
@@ -46,11 +46,16 @@ dog_2 = Dog("Hilda", 2, "Siri Brattberg")
 dog_3 = Dog("Beppe", 10, "Karl Hermansson")
 dog_4 = Dog("Walle", 5, "Tony Irving")
 
-dog_1.add_breed("Newfoundland")
+dog_1.add_breed("golden retriever")
 dog_1.add_favoriteToy("Big balls")
 dog_1.add_best_friend(dog_2.name)
 dog_1.add_best_friend(dog_3.name)
 dog_1.add_best_friend(dog_4.name)
 
+dog_2.add_breed("Newfoundland")
+dog_2.add_best_friend(dog_3.name)
+dog_2.add_best_friend(dog_4.name)
+
 #print(dog_1.__dict__)
-#print(dog_1.bestFriend)
+print(dog_1.bestFriend)
+print(dog_2.bestFriend)

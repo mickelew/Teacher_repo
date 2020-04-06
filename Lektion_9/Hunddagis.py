@@ -55,6 +55,10 @@ class Dog_daycare:
     def set_boss_name(self, name):
         self.name_manager = name
 
+def loop_throughList():
+    for dog in daycare_1.namelist_dogs:
+                print(dog.name)
+
 def selectionMenu(name):
     
     daycare_name = name
@@ -69,31 +73,37 @@ def selectionMenu(name):
             name = input("Name: ")
             age = input("Age: ")
             owner = input("Owner: ")
+            
             daycare_1.add_dog(name, age, owner)
             mainMenu(daycare_name)
     
         elif selection == 2:
+            print(f"These are the dogs currently in the daycare: ")
+            loop_throughList()
+            
             input_remove = input("Enter name of dog you wish to remove: ")
             daycare_1.remove_dog(input_remove)
             mainMenu(daycare_name)
         
         elif selection == 3:
             input_change = input("Enter dog's name you wish to change: ")
+            
             daycare_1.set_name(input_change)
             mainMenu(daycare_name)
         
         elif selection == 4:
             input_owner = input("Enter name of owner: ")
+            
             daycare_1.remove_dog(input_owner)
             mainMenu(daycare_name)
         
         elif selection == 5:
-            for dog in daycare_1.namelist_dogs:
-                print(dog.name)
+            loop_throughList()
             mainMenu(daycare_name)
        
         elif selection == 6:
             input_manager = input("Enter manager's name: ")
+            
             daycare_1.name_manager(input_manager)
             mainMenu(daycare_name)
        
@@ -125,3 +135,10 @@ dog_1 = Dog("Charlie", 7, "Michael Levin")
 dog_2 = Dog("Hilda", 2, "Siri Brattberg")
 dog_3 = Dog("Beppe", 10, "Karl Hermansson")
 dog_4 = Dog("Walle", 5, "Tony Irving")
+
+#daycare_1.add_dog(dog_1.name)
+#daycare_1.add_dog(dog_2.name)
+#daycare_1.add_dog(dog_3.name)
+#daycare_1.add_dog(dog_4.name)
+
+mainMenu(daycare_1.name_daycare)

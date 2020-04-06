@@ -54,6 +54,27 @@ class Dog_daycare:
     def set_boss_name(self, name):
         self.name_manager = name
 
+def selectionMenu():
+    selection=int(input("Enter choice: "))
+    
+    if selection == 1:
+        input_add = input("Enter name of dog you wish to add: ")
+        daycare_1.add_dog(input_add)
+    elif selection == 2:
+        input_remove = input("Enter name of dog you wish to remove: ")
+        daycare_1.remove_dog(input_remove)
+    elif selection == 3:
+        input_change = input("Enter dog's name you wish to change: ")
+        daycare_1.set_name(input_change)
+    elif selection == 4:
+        input_owner = input("Enter name of owner: ")
+        daycare_1.remove_dog(input_owner)
+    elif selection == 5:
+        daycare_1.__dict__
+    elif selection == 6:
+        input_manager = input("Enter manager's name: ")
+        daycare_1.name_manager(input_manager)
+
 def mainMenu(name):
     print(f"Welcome to {name} daycare\n\nWhat would you like to do?")
     print("1. Add a dog to the daycare.")
@@ -62,6 +83,8 @@ def mainMenu(name):
     print("4. Change the owner of a dog.")
     print("5. Show all dogs currently at the daycare.")
     print("6. Change manager.")
+    selectionMenu()
+
 
 
 #Instance - Hämtar funktionen från 'class Dog/Dog_daycare'.
@@ -73,3 +96,4 @@ dog_3 = Dog("Beppe", 10, "Karl Hermansson")
 dog_4 = Dog("Walle", 5, "Tony Irving")
 
 print(mainMenu(daycare_1.name_daycare))
+print(daycare_1.__dict__)

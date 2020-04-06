@@ -46,9 +46,8 @@ class Dog_daycare:
         self.namelist_dogs = []
     
     def add_dog(self, name, age, owner):
-        self.dog_name = str(name)
-        self.dog_name = Dog(str(name), int(age), str(owner))
-        self.namelist_dogs.append(self.dog_name)
+        self.name = Dog(str(name), int(age), str(owner))
+        self.namelist_dogs.append(self.name)
 
     def remove_dog(self, name):
         self.namelist_dogs.remove(name)

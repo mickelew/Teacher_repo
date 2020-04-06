@@ -58,7 +58,7 @@ def selectionMenu(name):
     selection=int(input("Enter choice: "))
     
     if selection == 1:
-        input_add = input("Enter name of dog you wish to add: ")
+        input_add = input("Enter name of the dog you wish to add: ")
         daycare_1.add_dog(input_add)
     elif selection == 2:
         input_remove = input("Enter name of dog you wish to remove: ")
@@ -77,7 +77,7 @@ def selectionMenu(name):
     elif selection == 7:
         exit
     else:
-        print("\n- Invalid choice. Enter 1-6 -")
+        print("\n- Invalid choice. Enter 1-7 -")
         mainMenu(name)
 
 def mainMenu(name):
@@ -100,6 +100,11 @@ dog_1 = Dog("Charlie", 7, "Michael Levin")
 dog_2 = Dog("Hilda", 2, "Siri Brattberg")
 dog_3 = Dog("Beppe", 10, "Karl Hermansson")
 dog_4 = Dog("Walle", 5, "Tony Irving")
+
+daycare_1.add_dog(dog_1.name)
+daycare_1.add_dog(dog_2.name)
+daycare_1.add_dog(dog_3.name)
+daycare_1.add_dog(dog_4.name)
 
 print(mainMenu(daycare_1.name_daycare))
 print(daycare_1.__dict__)

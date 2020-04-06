@@ -3,10 +3,11 @@ class Dog:
     
     multiple_friends = "Golden Retriever"
 
-    def __init__(self, name, age, owner):
+    def __init__(self, name, age, owner, breed):
         self.name = name
         self.age = age
         self.owner = owner
+        self.breed = breed
         self.bestFriend = []
 
     #Method - Kräver '()' när den kallas på av programmet.
@@ -45,8 +46,8 @@ class Dog_daycare(Dog):
         self.name_manager = name_manager
         self.namelist_dogs = []
     
-    def add_dog(self, name, age, owner):
-        temp_dog = Dog(str(name), int(age), str(owner))
+    def add_dog(self, name, age, owner, breed):
+        temp_dog = Dog(str(name), int(age), str(owner), str(breed))
         self.namelist_dogs.append(temp_dog)
 
     def remove_dog(self, name):
@@ -66,6 +67,11 @@ def loop_throughList():
         print(dog.name)
     print()
 
+def loop_throughEverything():
+    for dog in daycare_1.namelist_dogs:
+        print(dog.__dict__)
+    print()
+
 def loop_throughOwners():
     for dog in daycare_1.namelist_dogs:
         print(dog.owner)
@@ -76,17 +82,18 @@ def selectionMenu(name):
     daycare_name = name
     selection = 0
         
-    while selection != 8:
+    while selection != 9:
                 
         selection=int(input("\nEnter choice: "))
     
         if selection == 1:
-            print("Enter name, age and owner of the dog you wish to add.")
+            print("Enter name, age, owner and breed of the dog you wish to add.")
             name = input("Name: ")
             age = input("Age: ")
             owner = input("Owner: ")
+            breed = input("Breed: ")
             
-            daycare_1.add_dog(name, age, owner)
+            daycare_1.add_dog(name, age, owner, breed)
             mainMenu(daycare_name)
     
         elif selection == 2:
@@ -133,6 +140,11 @@ def selectionMenu(name):
             mainMenu(daycare_name)
        
         elif selection == 7:
+            print("This is everything you need to know about the dogs at this daycare: \n")
+            loop_throughEverything()
+            mainMenu(daycare_name)
+
+        elif selection == 8:
             print(f"The current manager is: {daycare_1.name_manager}")
             name = input("Enter the new manager's name: ")
             
@@ -141,11 +153,11 @@ def selectionMenu(name):
             
             mainMenu(daycare_name)
        
-        elif selection == 8:
+        elif selection == 9:
             exit
         
         else:
-            print("\n- Invalid choice. Enter 1-8 -")
+            print("\n- Invalid choice. Enter 1-9 -")
             mainMenu(daycare_name)
         break
 
@@ -157,8 +169,9 @@ def mainMenu(name):
     print("4. Change the owner of a dog.")
     print("5. Show all owners to dogs currently at the daycare.")
     print("6. Show all dogs currently at the daycare.")
-    print("7. Change manager.")
-    print("8. Exit")
+    print("7. Show everything about the dogs at the daycare.")
+    print("8. Change manager.")
+    print("9. Exit")
     selectionMenu(name)
         
 

@@ -46,8 +46,8 @@ class Dog_daycare:
         self.namelist_dogs = []
     
     def add_dog(self, name, age, owner):
-        self.name = Dog(str(name), int(age), str(owner))
-        self.namelist_dogs.append(self.name)
+        temp_dog = Dog(str(name), int(age), str(owner))
+        self.namelist_dogs.append(temp_dog)
 
     def remove_dog(self, name):
         self.namelist_dogs.remove(name)
@@ -56,34 +56,51 @@ class Dog_daycare:
         self.name_manager = name
 
 def selectionMenu(name):
-    selection=int(input("Enter choice: "))
+    selection = 0
+    while selection != 7:
+                
+        selection=int(input("Enter choice: "))
     
-    if selection == 1:
-        print("Enter name, age and owner of the dog you wish to add.")
-        input_add_name = input("Name: ")
-        input_add_age = input("Age: ")
-        input_add_owner = input("Owner: ")
-        daycare_1.add_dog(input_add_name, input_add_age, input_add_owner)
+        if selection == 1:
+            print("Enter name, age and owner of the dog you wish to add.")
+            name = input("Name: ")
+            age = input("Age: ")
+            owner = input("Owner: ")
+            daycare_1.add_dog(name, age, owner)
+            mainMenu(name)
     
-    elif selection == 2:
-        input_remove = input("Enter name of dog you wish to remove: ")
-        daycare_1.remove_dog(input_remove)
-    elif selection == 3:
-        input_change = input("Enter dog's name you wish to change: ")
-        daycare_1.set_name(input_change)
-    elif selection == 4:
-        input_owner = input("Enter name of owner: ")
-        daycare_1.remove_dog(input_owner)
-    elif selection == 5:
-        daycare_1.__dict__
-    elif selection == 6:
-        input_manager = input("Enter manager's name: ")
-        daycare_1.name_manager(input_manager)
-    elif selection == 7:
-        exit
-    else:
-        print("\n- Invalid choice. Enter 1-7 -")
-        mainMenu(name)
+        elif selection == 2:
+            input_remove = input("Enter name of dog you wish to remove: ")
+            daycare_1.remove_dog(input_remove)
+            mainMenu(name)
+        
+        elif selection == 3:
+            input_change = input("Enter dog's name you wish to change: ")
+            daycare_1.set_name(input_change)
+            mainMenu(name)
+        
+        elif selection == 4:
+            input_owner = input("Enter name of owner: ")
+            daycare_1.remove_dog(input_owner)
+            mainMenu(name)
+        
+        elif selection == 5:
+            for dog in daycare_1.namelist_dogs:
+                print(dog.name)
+            mainMenu(name)
+       
+        elif selection == 6:
+            input_manager = input("Enter manager's name: ")
+            daycare_1.name_manager(input_manager)
+            mainMenu(name)
+       
+        elif selection == 7:
+            exit
+        
+        else:
+            print("\n- Invalid choice. Enter 1-7 -")
+            mainMenu(name)
+        break
 
 def mainMenu(name):
     print(f"\nWelcome to {name} daycare.\nWhat would you like to do?\n")
@@ -112,4 +129,3 @@ dog_4 = Dog("Walle", 5, "Tony Irving")
 #daycare_1.add_dog(dog_4.name)
 
 print(mainMenu(daycare_1.name_daycare))
-print(daycare_1.__dict__)

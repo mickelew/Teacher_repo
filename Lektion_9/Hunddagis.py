@@ -54,7 +54,7 @@ class Dog_daycare:
     def set_boss_name(self, name):
         self.name_manager = name
 
-def selectionMenu():
+def selectionMenu(name):
     selection=int(input("Enter choice: "))
     
     if selection == 1:
@@ -74,16 +74,22 @@ def selectionMenu():
     elif selection == 6:
         input_manager = input("Enter manager's name: ")
         daycare_1.name_manager(input_manager)
+    elif selection == 7:
+        exit
+    else:
+        print("\n- Invalid choice. Enter 1-6 -")
+        mainMenu(name)
 
 def mainMenu(name):
-    print(f"Welcome to {name} daycare\n\nWhat would you like to do?")
+    print(f"\nWelcome to {name} daycare.\nWhat would you like to do?\n")
     print("1. Add a dog to the daycare.")
     print("2. Remove dog from the daycare.")
     print("3. Change a dog's name.")
     print("4. Change the owner of a dog.")
     print("5. Show all dogs currently at the daycare.")
     print("6. Change manager.")
-    selectionMenu()
+    print("7. Exit")
+    selectionMenu(name)
 
 
 

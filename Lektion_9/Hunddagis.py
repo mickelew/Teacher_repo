@@ -28,12 +28,8 @@ class Dog:
     def add_favoriteToy(self, favoriteToy):
         self.favoriteToy = favoriteToy
 
-    def set_name(self, name, newName):
-        for i, dog in enumerate(daycare_1.namelist_dogs):
-            if dog.name == name:
-                daycare_1.namelist_dogs[i] = newName
-                break
-        
+    def set_name(self, name):
+        self.name = name     
     
     def set_age(self, age):
         self.age = age
@@ -100,10 +96,14 @@ def selectionMenu(name):
             print("These are the dogs currently in the daycare: ")
             loop_throughList()
             
-            input_dogName = input("Enter dog's name you wish to change: ")
-            input_dogChange = input("Enter new name of said dog: ")
+            name = input("Enter dog's name you wish to change: ")
+            newName = input("Enter new name of said dog: ")
             
-            daycare_1.set_name(input_dogName, input_dogChange)
+            for i, dog in enumerate(daycare_1.namelist_dogs):
+                if dog.name == name:
+                    dog.set_name(newName)
+                    break
+            
             mainMenu(daycare_name)
         
         elif selection == 4:

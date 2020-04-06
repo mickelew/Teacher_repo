@@ -53,7 +53,15 @@ class Dog_daycare:
         
     def set_boss_name(self, name):
         self.name_manager = name
-    
+
+def mainMenu(name):
+    print(f"Welcome to {name} daycare\n\nWhat would you like to do?")
+    print("1. Add a dog to the daycare.")
+    print("2. Remove dog from the daycare.")
+    print("3. Change a dog's name.")
+    print("4. Change the owner of a dog.")
+    print("5. Show all dogs currently at the daycare.")
+    print("6. Change manager.")
 
 
 #Instance - Hämtar funktionen från 'class Dog/Dog_daycare'.
@@ -64,21 +72,4 @@ dog_2 = Dog("Hilda", 2, "Siri Brattberg")
 dog_3 = Dog("Beppe", 10, "Karl Hermansson")
 dog_4 = Dog("Walle", 5, "Tony Irving")
 
-dog_1.add_breed("golden retriever")
-dog_1.add_favoriteToy("Big balls")
-dog_1.add_best_friend(dog_2.name)
-dog_1.add_best_friend(dog_3.name)
-dog_1.add_best_friend(dog_4.name)
-
-dog_2.add_breed("Newfoundland")
-dog_2.add_favoriteToy("Small balls")
-dog_2.add_best_friend(dog_3.name)
-
-daycare_1.add_dog(dog_1.__dict__)
-daycare_1.add_dog(dog_2.__dict__)
-daycare_1.add_dog(dog_3.__dict__)
-
-print(daycare_1.__dict__)
-
-print(dog_1.bestFriend)
-print(dog_2.bestFriend)
+print(mainMenu(daycare_1.name_daycare))

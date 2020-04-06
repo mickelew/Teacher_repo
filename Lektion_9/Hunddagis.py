@@ -45,8 +45,10 @@ class Dog_daycare:
         self.name_manager = name_manager
         self.namelist_dogs = []
     
-    def add_dog(self, name):
-        self.namelist_dogs.append(name)
+    def add_dog(self, name, age, owner):
+        self.dog_name = str(name)
+        self.dog_name = Dog(str(name), int(age), str(owner))
+        self.namelist_dogs.append(self.dog_name)
 
     def remove_dog(self, name):
         self.namelist_dogs.remove(name)
@@ -58,8 +60,12 @@ def selectionMenu(name):
     selection=int(input("Enter choice: "))
     
     if selection == 1:
-        input_add = input("Enter name of the dog you wish to add: ")
-        daycare_1.add_dog(input_add)
+        print("Enter name, age and owner of the dog you wish to add.")
+        input_add_name = input("Name: ")
+        input_add_age = input("Age: ")
+        input_add_owner = input("Owner: ")
+        daycare_1.add_dog(input_add_name, input_add_age, input_add_owner)
+    
     elif selection == 2:
         input_remove = input("Enter name of dog you wish to remove: ")
         daycare_1.remove_dog(input_remove)
@@ -101,10 +107,10 @@ dog_2 = Dog("Hilda", 2, "Siri Brattberg")
 dog_3 = Dog("Beppe", 10, "Karl Hermansson")
 dog_4 = Dog("Walle", 5, "Tony Irving")
 
-daycare_1.add_dog(dog_1.name)
-daycare_1.add_dog(dog_2.name)
-daycare_1.add_dog(dog_3.name)
-daycare_1.add_dog(dog_4.name)
+#daycare_1.add_dog(dog_1.name)
+#daycare_1.add_dog(dog_2.name)
+#daycare_1.add_dog(dog_3.name)
+#daycare_1.add_dog(dog_4.name)
 
 print(mainMenu(daycare_1.name_daycare))
 print(daycare_1.__dict__)

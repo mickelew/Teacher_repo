@@ -50,8 +50,9 @@ class Dog_daycare:
         self.namelist_dogs.append(temp_dog)
 
     def remove_dog(self, name):
-        """Går igenom listan 'namelist_dogs' och letar efter namnet användaren angett för att returnera dess placering och sedan radera."""
-        
+        """ Går igenom listan 'namelist_dogs' och matchar input från användaren mot objekt i listan,
+            för att returnera dess placering och sedan radera. """
+
         for i, dog in enumerate(daycare_1.namelist_dogs):
             if dog.name == name:
                 del daycare_1.namelist_dogs[i]

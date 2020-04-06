@@ -66,12 +66,17 @@ def loop_throughList():
         print(dog.name)
     print()
 
+def loop_throughOwners():
+    for dog in daycare_1.namelist_dogs:
+        print(dog.owner)
+    print()
+
 def selectionMenu(name):
     
     daycare_name = name
     selection = 0
         
-    while selection != 7:
+    while selection != 8:
                 
         selection=int(input("\nEnter choice: "))
     
@@ -107,27 +112,40 @@ def selectionMenu(name):
             mainMenu(daycare_name)
         
         elif selection == 4:
-            input_owner = input("Enter name of owner you wish to change: ")
-            input_ownerChange = input("Enter name of new owner: ")
-            daycare_1.remove_dog(input_owner, input_ownerChange)
+            loop_throughOwners()
+
+            owner = input("Enter name of owner you wish to change: ")
+            newOwner = input("Enter name of new owner: ")
             
+            for i, dog in enumerate(daycare_1.namelist_dogs):
+                if dog.owner == owner:
+                    dog.set_owner(newOwner)
+                    break
+                        
             mainMenu(daycare_name)
         
         elif selection == 5:
+            loop_throughOwners()
+            mainMenu(daycare_name)
+        
+        elif selection == 6:
             loop_throughList()
             mainMenu(daycare_name)
        
-        elif selection == 6:
-            input_manager = input("Enter manager's name: ")
+        elif selection == 7:
+            print(f"The current manager is: {daycare_1.name_manager}")
+            name = input("Enter the new manager's name: ")
             
-            daycare_1.name_manager(input_manager)
+            daycare_1.set_boss_name(name)
+            print(f"\nThe new manager is {daycare_1.name_manager}")
+            
             mainMenu(daycare_name)
        
-        elif selection == 7:
+        elif selection == 8:
             exit
         
         else:
-            print("\n- Invalid choice. Enter 1-7 -")
+            print("\n- Invalid choice. Enter 1-8 -")
             mainMenu(daycare_name)
         break
 
@@ -137,24 +155,15 @@ def mainMenu(name):
     print("2. Remove dog from the daycare.")
     print("3. Change a dog's name.")
     print("4. Change the owner of a dog.")
-    print("5. Show all dogs currently at the daycare.")
-    print("6. Change manager.")
-    print("7. Exit")
+    print("5. Show all owners to dogs currently at the daycare.")
+    print("6. Show all dogs currently at the daycare.")
+    print("7. Change manager.")
+    print("8. Exit")
     selectionMenu(name)
         
 
 
 #Instance - Hämtar funktionen från 'class Dog/Dog_daycare'.
 daycare_1 = Dog_daycare("Vacker Tass", "Geraldo Milan")
-
-dog_1 = Dog("Charlie", 7, "Michael Levin")
-dog_2 = Dog("Hilda", 2, "Siri Brattberg")
-dog_3 = Dog("Beppe", 10, "Karl Hermansson")
-dog_4 = Dog("Walle", 5, "Tony Irving")
-
-#daycare_1.add_dog(dog_1.name)
-#daycare_1.add_dog(dog_2.name)
-#daycare_1.add_dog(dog_3.name)
-#daycare_1.add_dog(dog_4.name)
 
 mainMenu(daycare_1.name_daycare)

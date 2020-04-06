@@ -28,8 +28,12 @@ class Dog:
     def add_favoriteToy(self, favoriteToy):
         self.favoriteToy = favoriteToy
 
-    def set_name(self, name):
-        self.name = name 
+    def set_name(self, name, newName):
+        for i, dog in enumerate(daycare_1.namelist_dogs):
+            if dog.name == name:
+                daycare_1.namelist_dogs[i] = newName
+                break
+        
     
     def set_age(self, age):
         self.age = age
@@ -38,7 +42,7 @@ class Dog:
         self.owner = owner
 
     
-class Dog_daycare:
+class Dog_daycare(Dog):
     
     def __init__(self, name_daycare, name_manager):
         self.name_daycare = name_daycare
@@ -63,7 +67,7 @@ class Dog_daycare:
 
 def loop_throughList():
     for dog in daycare_1.namelist_dogs:
-                print(dog.name)
+        print(dog.name)
     print()
 
 def selectionMenu(name):
@@ -73,7 +77,7 @@ def selectionMenu(name):
         
     while selection != 7:
                 
-        selection=int(input("Enter choice: "))
+        selection=int(input("\nEnter choice: "))
     
         if selection == 1:
             print("Enter name, age and owner of the dog you wish to add.")
@@ -93,15 +97,20 @@ def selectionMenu(name):
             mainMenu(daycare_name)
         
         elif selection == 3:
-            input_change = input("Enter dog's name you wish to change: ")
+            print("These are the dogs currently in the daycare: ")
+            loop_throughList()
             
-            daycare_1.set_name(input_change)
+            input_dogName = input("Enter dog's name you wish to change: ")
+            input_dogChange = input("Enter new name of said dog: ")
+            
+            daycare_1.set_name(input_dogName, input_dogChange)
             mainMenu(daycare_name)
         
         elif selection == 4:
-            input_owner = input("Enter name of owner: ")
+            input_owner = input("Enter name of owner you wish to change: ")
+            input_ownerChange = input("Enter name of new owner: ")
+            daycare_1.remove_dog(input_owner, input_ownerChange)
             
-            daycare_1.remove_dog(input_owner)
             mainMenu(daycare_name)
         
         elif selection == 5:

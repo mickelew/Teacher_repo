@@ -50,14 +50,20 @@ class Dog_daycare:
         self.namelist_dogs.append(temp_dog)
 
     def remove_dog(self, name):
-        self.namelist_dogs.remove(name)
+        """Går igenom listan 'namelist_dogs' och letar efter namnet användaren angett för att returnera dess placering och sedan radera."""
         
+        for i, dog in enumerate(daycare_1.namelist_dogs):
+            if dog.name == name:
+                del daycare_1.namelist_dogs[i]
+                break
+                
     def set_boss_name(self, name):
         self.name_manager = name
 
 def loop_throughList():
     for dog in daycare_1.namelist_dogs:
                 print(dog.name)
+    print()
 
 def selectionMenu(name):
     
@@ -78,11 +84,11 @@ def selectionMenu(name):
             mainMenu(daycare_name)
     
         elif selection == 2:
-            print(f"These are the dogs currently in the daycare: ")
+            print("\nThese are the dogs currently in the daycare: ")
             loop_throughList()
             
-            input_remove = input("Enter name of dog you wish to remove: ")
-            daycare_1.remove_dog(input_remove)
+            name = str(input("Enter name of dog you wish to remove: "))
+            daycare_1.remove_dog(name)
             mainMenu(daycare_name)
         
         elif selection == 3:

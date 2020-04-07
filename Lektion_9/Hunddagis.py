@@ -69,7 +69,7 @@ def loop_throughList():
 
 def loop_throughEverything():
     for dog in daycare_1.namelist_dogs:
-        print(dog.__dict__)
+        print(f"Name: {dog.name}, Age: {dog.age}, Owner: {dog.owner}, Breed: {dog.breed}")
     print()
 
 def loop_throughOwners():

@@ -139,7 +139,7 @@ def storedCDs():
 def storedMovies():
     for movie in temp_library.movieRegister:
         print(f"Title: {movie.title}, "
-                f"Author: {movie.author}, "
+                f"Director: {movie.author}, "
                 f"Purchase price: {movie.purchasePrice}:-, "
                 f"Purchase year: {movie.purchaseYear}, "
                 f"Length in minutes: {movie.lengthMinutes}, "
@@ -147,31 +147,105 @@ def storedMovies():
                 f"Current value: {movie.value:.2f}:-\n")
     print()
 
-print("Enter your library's name and city.\n")
+def storedMedia():
+    
+    print("Books: \n")
+    storedBooks()
+
+    print("CD's: \n")
+    storedCDs()
+
+    print("Movies: \n")
+    storedMovies()
+
+
+#Functions for the menu
+
+def selectionMenu(name, city):
+    
+    libraryName = name
+    libraryCity = city
+
+    selection = 0
+
+    while selection != 8:
+
+        selection = int(input("\nEnter choice: "))
+        if selection == 1:
+            print("Enter the title, author, purchase price, year of purchase and number of pages.")
+            title = str(input("Title: "))
+            author = str(input("Author: "))
+            purchasePrice = int(input("Purchase price: "))
+            purchaseYear =  int(input("Year of purchase: "))
+            numberOfPages = int(input("Number of pages: "))
+
+            temp_library.add_book(title, author, purchasePrice, purchaseYear, numberOfPages)
+            print(f"\n{title} has been added to the registry.")
+        
+        elif selection == 2:
+            print("Enter the title, artist, purchase price, year of purchase and number of tracks.")
+            title = str(input("Title: "))
+            author = str(input("Artist: "))
+            purchasePrice = int(input("Purchase price: "))
+            purchaseYear =  int(input("Year of purchase: "))
+            numberOfTracks = int(input("Number of tracks: "))
+
+            temp_library.add_cd(title, author, purchasePrice, purchaseYear, numberOfTracks)
+            print(f"\n{title} has been added to the registry.")
+
+        elif selection == 3:
+            print("Enter the title, artist, purchase price, year of purchase, length in minutes and condition.")
+            title = str(input("Title: "))
+            author = str(input("Director: "))
+            purchasePrice = int(input("Purchase price: "))
+            purchaseYear =  int(input("Year of purchase: "))
+            lengthMinutes = int(input("Length in minutes: "))
+            condition = int(input("Condition 1-10 (1 is bad, 10 is mint): "))
+
+            temp_library.add_movie(title, author, purchasePrice, purchaseYear, lengthMinutes, condition)
+            print(f"\n{title} has been added to the registry.")                        
+            
+        elif selection == 4:
+            print("These are the books currently in the registry:\n")
+            storedBooks()
+        
+        elif selection == 5:
+            print("These are the CD's currently in the registry:\n")
+            storedCDs()
+        
+        elif selection == 6:
+            print("These are the movies currently in the registry:\n")
+            storedMovies()
+
+        elif selection == 7:
+            print("This is everything currently in the registry:\n")
+            storedMedia()
+        
+        elif selection == 8:
+            exit()
+
+        else:
+            print("Invalid choice. Enter 1-8.")
+        
+        mainMenu(libraryName, libraryCity)
+        
+def mainMenu(name, city):
+    
+    print(f"\nWelcome to {name} in {city}.\nWhat would you like to do?\n")
+    print("1. Register a book.")
+    print("2. Register a CD.")
+    print("3. Register a movie.")
+    print("4. Show all books currently in the registry.")
+    print("5. Show all CD's currently in the registry.")
+    print("6. Show all movies currently in the registry.")
+    print("7. Show everything currently in the registry.")
+    print("8. Save and Exit.\n")
+    selectionMenu(name, city)
+    
+
+print("Enter your library's name and city:\n")
 name = input(str("Name: "))
 city = input(str("City: "))
 temp_library = Library(str(name), str(city))
     
-#Books
-temp_library.add_book("Alfons Åberg", "Sven Melander", 100, 1970, 240)
-
-#CD's
-temp_library.add_cd("Ride the lightning", "Metallica", 100, 1984, 18)
-temp_library.add_cd("Ride the lightning", "Metallica", 200, 1984, 18)
-temp_library.add_cd("Black Album", "Metallica", 199, 1984, 18)
-
-#Movies
-temp_library.add_movie("Indiana Jones", "Steven Spielberg", 100, 2000, 135, 5)
-temp_library.add_movie("Star Wars", "George Lucas", 100, 1990, 135, 10)
-temp_library.add_movie("E.T", "Steven Spielberg", 200, 2010, 135, 1)
-
-print(f"\n{temp_library.name}, {temp_library.city}\n")
-
-print(f"These are the books currently in {temp_library.name}:\n")
-storedBooks()
-
-print(f"These are the CD's currently in {temp_library.name}:\n")
-storedCDs()
-
-print(f"These are the movies currently in {temp_library.name}:\n")
-storedMovies()
+mainMenu(temp_library.name, temp_library.city)

@@ -54,6 +54,7 @@ class CD(mediaAttributes):
     def __init__(self, title, author, purchasePrice, purchaseYear, numberOfTracks):
         super().__init__(title, author, purchasePrice, purchaseYear)
         self.numberOfTracks = numberOfTracks
+        self.value = valueCD(title, author, purchasePrice)
 
 class Book(mediaAttributes):
     """ Kräver de fyra gemensamma attributen från mediaAttributes, samt numberOfPages. 
@@ -87,8 +88,17 @@ def valueBook(purchasePrice, purchaseYear):
         value = purchasePrice*1.08**(age-50)
     return value
 
-def valueCD():
-    pass
+def valueCD(title, author, purchasePrice):
+    
+    duplicateCD = 1
+
+    for cd in temp_library.cdRegister:
+        if cd.title.casefold() == title.casefold() and cd.author.casefold() == author.casefold():
+            duplicateCD += 1
+    
+    value = purchasePrice // duplicateCD
+    
+    return value
 
 def valueMovie(purchasePrice, purchaseYear, condition):
     
@@ -105,8 +115,10 @@ temp_library = Library(str(name), str(city))
     
 
 temp_library.add_book("Alfons Åberg", "Sven Melander", 100, 1970, 240)
-temp_library.add_cd("Ride the lightning", "Metallica", 199, 1984, 18)
-temp_library.add_movie("Indiana Jones", "Steven Spielberg", 100, 1970, 135, 5)
+temp_library.add_cd("Ride the lightning", "Metallica", 100, 1984, 18)
+temp_library.add_cd("Ride the lightning", "Metallica", 100, 1984, 18)
+temp_library.add_cd("Black Album", "Metallica", 199, 1984, 18)
+temp_library.add_movie("Indiana Jones", "Steven Spielberg", 100, 2000, 135, 5)
 
 print(f"\n{temp_library.name}, {temp_library.city}\n")
 
@@ -116,7 +128,7 @@ for book in temp_library.bookRegister:
 
 print(f"These are the CD's currently in {temp_library.name}:")
 for cd in temp_library.cdRegister:
-    print(f"Title: {cd.title}, Author: {cd.author}, Purchase price: {cd.purchasePrice}:-, Purchase year: {cd.purchaseYear}, Number of pages: {cd.numberOfTracks}\n")
+    print(f"Title: {cd.title}, Author: {cd.author}, Purchase price: {cd.purchasePrice}:-, Purchase year: {cd.purchaseYear}, Number of pages: {cd.numberOfTracks}, Value: {cd.value}:-\n")
 
 print(f"These are the movies currently in {temp_library.name}:")
 for movie in temp_library.movieRegister:

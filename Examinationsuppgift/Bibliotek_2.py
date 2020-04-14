@@ -78,7 +78,8 @@ class Movie(mediaAttributes):
 
 #Functions for determining value of object.
 def valueBook(purchasePrice, purchaseYear):
-    
+    """ Gör en beräkning av värdet utifrån bokens ålder och inköpspris. """
+
     currentYear = date.today().year
     age = currentYear-purchaseYear
     
@@ -89,19 +90,21 @@ def valueBook(purchasePrice, purchaseYear):
     return value
 
 def valueCD(title, author, purchasePrice):
-    
-    duplicateCD = 1
+    """ Letar efter dubbletter i cd-registret och gör en beräkning av värdet
+        utifrån hur många kopior av samma cd som redan finns lagrat. """
 
+    duplicateCD = 1
     for cd in temp_library.cdRegister:
         if cd.title.casefold() == title.casefold() and cd.author.casefold() == author.casefold():
             duplicateCD += 1
     
     value = purchasePrice // duplicateCD
-    
     return value
 
 def valueMovie(purchasePrice, purchaseYear, condition):
-    
+    """ Gör en beräkning av värdet utifrån filmens inköpspris, ålder 
+        och vilket skick den var i vid inlämnandet. """
+        
     currentYear = date.today().year
     age = currentYear-purchaseYear
 

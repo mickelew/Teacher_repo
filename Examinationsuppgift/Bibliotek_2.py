@@ -30,7 +30,7 @@ class Library:
 
 
 #Superclass
-class commonAttributes:
+class mediaAttributes:
     """ Används av mediatyp-klasserna för inhämtning av gemensamma attribut. """
 
     def __init__(self, title, author, purchasePrice, purchaseYear):
@@ -40,24 +40,24 @@ class commonAttributes:
         self.purchaseYear = purchaseYear
 
 #Subclasses
-class CD(commonAttributes):
-    """ Kräver de fyra gemensamma attributen från commonAttributes, samt numberOfTracks. 
+class CD(mediaAttributes):
+    """ Kräver de fyra gemensamma attributen från mediaAttributes, samt numberOfTracks. 
         Används när en ny CD ska läggas till i registret. """
     
     def __init__(self, title, author, purchasePrice, purchaseYear, numberOfTracks):
         super().__init__(title, author, purchasePrice, purchaseYear)
         self.numberOfTracks = numberOfTracks
 
-class Book(commonAttributes):
-    """ Kräver de fyra gemensamma attributen från commonAttributes, samt numberOfPages. 
+class Book(mediaAttributes):
+    """ Kräver de fyra gemensamma attributen från mediaAttributes, samt numberOfPages. 
         Används när en ny bok ska läggas till i registret. """
 
     def __init__(self, title, author, purchasePrice, purchaseYear, numberOfPages):
         super().__init__(title, author, purchasePrice, purchaseYear)
         self.numberOfPages = numberOfPages
 
-class Movie(commonAttributes):
-    """ Kräver de fyra gemensamma attributen från commonAttributes, samt lengthMinutes och condition. 
+class Movie(mediaAttributes):
+    """ Kräver de fyra gemensamma attributen från mediaAttributes, samt lengthMinutes och condition. 
         Används när en ny film ska lägas till i registret. 
         Condition anges i ett värde mellan 1-10 där 1 = mycket sliten och 10 = mycket gott skick. """
 
@@ -65,6 +65,7 @@ class Movie(commonAttributes):
         super().__init__(title, author, purchasePrice, purchaseYear)
         self.lengthMinutes = lengthMinutes
         self.condition = condition
+
 
 
 print("Enter your library's name and city.\n")

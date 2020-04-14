@@ -1,3 +1,10 @@
+#Imports
+from datetime import date
+
+
+
+
+
 
 class Library:
     """ Låter användaren skapa sitt biblioteket med namn samt stad.
@@ -21,7 +28,7 @@ class Library:
     def add_book(self, title, author, purchasePrice, purchaseYear, numberOfPages):
         
         temp_book = Book(str(title), str(author), int(purchasePrice), int(purchaseYear), int(numberOfPages))
-        self.bookRegister.append(temp_book)
+        self.bookRegister.append(temp_book)     
 
     def add_movie(self, title, author, purchasePrice, purchaseYear, lengthMinutes, condition):
 
@@ -55,6 +62,7 @@ class Book(mediaAttributes):
     def __init__(self, title, author, purchasePrice, purchaseYear, numberOfPages):
         super().__init__(title, author, purchasePrice, purchaseYear)
         self.numberOfPages = numberOfPages
+        self.value = valueBook(purchasePrice, purchaseYear)
 
 class Movie(mediaAttributes):
     """ Kräver de fyra gemensamma attributen från mediaAttributes, samt lengthMinutes och condition. 
@@ -66,7 +74,23 @@ class Movie(mediaAttributes):
         self.lengthMinutes = lengthMinutes
         self.condition = condition
 
+#Functions for determining value of object.
+def valueBook(purchasePrice, purchaseYear):
+    
+    currentYear = date.today().year
+    age = currentYear-purchaseYear
+    
+    if age <= 50:
+        value = purchasePrice*0.9**age
+    elif age > 50:
+        value = purchasePrice*1.08**(age-50)
+    return value
 
+def valueCD():
+    pass
+
+def valueMovie():
+    pass
 
 print("Enter your library's name and city.\n")
 name = input(str("Name: "))
@@ -74,15 +98,15 @@ city = input(str("City: "))
 temp_library = Library(str(name), str(city))
     
 
-temp_library.add_book("Alfons Åberg", "Sven Melander", 129, 1988, 240)
+temp_library.add_book("Alfons Åberg", "Sven Melander", 100, 1970, 240)
 temp_library.add_cd("Ride the lightning", "Metallica", 199, 1984, 18)
 temp_library.add_movie("Indiana Jones", "Steven Spielberg", 149, 1986, 135, 5)
 
-print(f"{temp_library.name}, {temp_library.city}\n")
+print(f"\n{temp_library.name}, {temp_library.city}\n")
 
 print(f"These are the books currently in {temp_library.name}:")
 for book in temp_library.bookRegister:
-    print(f"Title: {book.title}, Author: {book.author}, Purchase price: {book.purchasePrice}:-, Purchase year: {book.purchaseYear}, Number of pages: {book.numberOfPages}\n")
+    print(f"Title: {book.title}, Author: {book.author}, Purchase price: {book.purchasePrice}:-, Purchase year: {book.purchaseYear}, Number of pages: {book.numberOfPages}, Value: {book.value:.2f}:-\n")
 
 print(f"These are the CD's currently in {temp_library.name}:")
 for cd in temp_library.cdRegister:

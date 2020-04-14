@@ -95,12 +95,7 @@ def valueMovie(purchasePrice, purchaseYear, condition):
     currentYear = date.today().year
     age = currentYear-purchaseYear
 
-    if age <= 50:
-        value = purchasePrice*0.9**age
-    elif age > 50:
-        value = purchasePrice*1.08**(age-50)
-
-    value = value*(condition/10)
+    value = purchasePrice*0.9**age*(condition/10)
     return value
 
 print("Enter your library's name and city.\n")
@@ -111,7 +106,7 @@ temp_library = Library(str(name), str(city))
 
 temp_library.add_book("Alfons Åberg", "Sven Melander", 100, 1970, 240)
 temp_library.add_cd("Ride the lightning", "Metallica", 199, 1984, 18)
-temp_library.add_movie("Indiana Jones", "Steven Spielberg", 100, 2010, 135, 5)
+temp_library.add_movie("Indiana Jones", "Steven Spielberg", 100, 1970, 135, 5)
 
 print(f"\n{temp_library.name}, {temp_library.city}\n")
 

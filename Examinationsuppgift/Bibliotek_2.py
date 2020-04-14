@@ -118,17 +118,33 @@ def valueMovie(purchasePrice, purchaseYear, condition):
 
 def storedBooks():
     for book in temp_library.bookRegister:
-        print(f"Title: {book.title}, Author: {book.author}, Purchase price: {book.purchasePrice}:-, Purchase year: {book.purchaseYear}, Number of pages: {book.numberOfPages}, Current value: {book.value:.2f}:-\n")
+        print((f"Title: {book.title}, "
+                f"Author: {book.author}, "
+                f"Purchase price: {book.purchasePrice}:-, "
+                f"Purchase year: {book.purchaseYear}, "
+                f"Number of pages: {book.numberOfPages}, "
+                f"Current value: {book.value:.2f}:-\n"))
     print()
 
 def storedCDs():
     for cd in temp_library.cdRegister:
-        print(f"Title: {cd.title}, Author: {cd.author}, Purchase price: {cd.purchasePrice}:-, Purchase year: {cd.purchaseYear}, Number of pages: {cd.numberOfTracks}, Current value: {cd.value}:-\n")
+        print((f"Title: {cd.title}, "
+                f"Author: {cd.author}, "
+                f"Purchase price: {cd.purchasePrice}:-, "
+                f"Purchase year: {cd.purchaseYear}, "
+                f"Number of pages: {cd.numberOfTracks}, "
+                f"Current value: {cd.value}:-\n"))
     print()
 
 def storedMovies():
     for movie in temp_library.movieRegister:
-        print(f"Title: {movie.title}, Author: {movie.author}, Purchase price: {movie.purchasePrice}:-, Purchase year: {movie.purchaseYear}, Length in minutes: {movie.lengthMinutes}, Condition: {movie.condition}, Current value: {movie.value:.2f}:-\n")
+        print(f"Title: {movie.title}, "
+                f"Author: {movie.author}, "
+                f"Purchase price: {movie.purchasePrice}:-, "
+                f"Purchase year: {movie.purchaseYear}, "
+                f"Length in minutes: {movie.lengthMinutes}, "
+                f"Condition: {movie.condition}, "
+                f"Current value: {movie.value:.2f}:-\n")
     print()
 
 print("Enter your library's name and city.\n")

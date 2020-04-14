@@ -46,6 +46,7 @@ class mediaAttributes:
         self.purchasePrice = purchasePrice
         self.purchaseYear = purchaseYear
 
+
 #Subclasses
 class CD(mediaAttributes):
     """ Kräver de fyra gemensamma attributen från mediaAttributes, samt numberOfTracks. 
@@ -75,6 +76,7 @@ class Movie(mediaAttributes):
         self.lengthMinutes = lengthMinutes
         self.condition = condition
         self.value = valueMovie(purchasePrice, purchaseYear, condition)
+
 
 #Functions for determining value of object.
 def valueBook(purchasePrice, purchaseYear):
@@ -111,28 +113,49 @@ def valueMovie(purchasePrice, purchaseYear, condition):
     value = purchasePrice*0.9**age*(condition/10)
     return value
 
+
+#Functions for showing all content for each media type
+
+def storedBooks():
+    for book in temp_library.bookRegister:
+        print(f"Title: {book.title}, Author: {book.author}, Purchase price: {book.purchasePrice}:-, Purchase year: {book.purchaseYear}, Number of pages: {book.numberOfPages}, Current value: {book.value:.2f}:-\n")
+    print()
+
+def storedCDs():
+    for cd in temp_library.cdRegister:
+        print(f"Title: {cd.title}, Author: {cd.author}, Purchase price: {cd.purchasePrice}:-, Purchase year: {cd.purchaseYear}, Number of pages: {cd.numberOfTracks}, Current value: {cd.value}:-\n")
+    print()
+
+def storedMovies():
+    for movie in temp_library.movieRegister:
+        print(f"Title: {movie.title}, Author: {movie.author}, Purchase price: {movie.purchasePrice}:-, Purchase year: {movie.purchaseYear}, Length in minutes: {movie.lengthMinutes}, Condition: {movie.condition}, Current value: {movie.value:.2f}:-\n")
+    print()
+
 print("Enter your library's name and city.\n")
 name = input(str("Name: "))
 city = input(str("City: "))
 temp_library = Library(str(name), str(city))
     
-
+#Books
 temp_library.add_book("Alfons Åberg", "Sven Melander", 100, 1970, 240)
+
+#CD's
 temp_library.add_cd("Ride the lightning", "Metallica", 100, 1984, 18)
-temp_library.add_cd("Ride the lightning", "Metallica", 100, 1984, 18)
+temp_library.add_cd("Ride the lightning", "Metallica", 200, 1984, 18)
 temp_library.add_cd("Black Album", "Metallica", 199, 1984, 18)
+
+#Movies
 temp_library.add_movie("Indiana Jones", "Steven Spielberg", 100, 2000, 135, 5)
+temp_library.add_movie("Star Wars", "George Lucas", 100, 1990, 135, 10)
+temp_library.add_movie("E.T", "Steven Spielberg", 200, 2010, 135, 1)
 
 print(f"\n{temp_library.name}, {temp_library.city}\n")
 
-print(f"These are the books currently in {temp_library.name}:")
-for book in temp_library.bookRegister:
-    print(f"Title: {book.title}, Author: {book.author}, Purchase price: {book.purchasePrice}:-, Purchase year: {book.purchaseYear}, Number of pages: {book.numberOfPages}, Value: {book.value:.2f}:-\n")
+print(f"These are the books currently in {temp_library.name}:\n")
+storedBooks()
 
-print(f"These are the CD's currently in {temp_library.name}:")
-for cd in temp_library.cdRegister:
-    print(f"Title: {cd.title}, Author: {cd.author}, Purchase price: {cd.purchasePrice}:-, Purchase year: {cd.purchaseYear}, Number of pages: {cd.numberOfTracks}, Value: {cd.value}:-\n")
+print(f"These are the CD's currently in {temp_library.name}:\n")
+storedCDs()
 
-print(f"These are the movies currently in {temp_library.name}:")
-for movie in temp_library.movieRegister:
-    print(f"Title: {movie.title}, Author: {movie.author}, Purchase price: {movie.purchasePrice}:-, Purchase year: {movie.purchaseYear}, Length in minutes: {movie.lengthMinutes}, Condition: {movie.condition}, Value: {movie.value:.2f}:-\n")
+print(f"These are the movies currently in {temp_library.name}:\n")
+storedMovies()

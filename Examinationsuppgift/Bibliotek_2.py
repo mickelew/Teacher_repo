@@ -1,4 +1,4 @@
-testestestestestest
+
 class Library:
     """ Låter användaren skapa sitt biblioteket med namn samt stad.
         Sparar även alla cd-skivor, böcker och filmer användaren registrerar. """

@@ -73,6 +73,7 @@ class Movie(mediaAttributes):
         super().__init__(title, author, purchasePrice, purchaseYear)
         self.lengthMinutes = lengthMinutes
         self.condition = condition
+        self.value = valueMovie(purchasePrice, purchaseYear, condition)
 
 #Functions for determining value of object.
 def valueBook(purchasePrice, purchaseYear):
@@ -89,8 +90,18 @@ def valueBook(purchasePrice, purchaseYear):
 def valueCD():
     pass
 
-def valueMovie():
-    pass
+def valueMovie(purchasePrice, purchaseYear, condition):
+    
+    currentYear = date.today().year
+    age = currentYear-purchaseYear
+
+    if age <= 50:
+        value = purchasePrice*0.9**age
+    elif age > 50:
+        value = purchasePrice*1.08**(age-50)
+
+    value = value*(condition/10)
+    return value
 
 print("Enter your library's name and city.\n")
 name = input(str("Name: "))
@@ -100,7 +111,7 @@ temp_library = Library(str(name), str(city))
 
 temp_library.add_book("Alfons Åberg", "Sven Melander", 100, 1970, 240)
 temp_library.add_cd("Ride the lightning", "Metallica", 199, 1984, 18)
-temp_library.add_movie("Indiana Jones", "Steven Spielberg", 149, 1986, 135, 5)
+temp_library.add_movie("Indiana Jones", "Steven Spielberg", 100, 2010, 135, 5)
 
 print(f"\n{temp_library.name}, {temp_library.city}\n")
 
@@ -114,4 +125,4 @@ for cd in temp_library.cdRegister:
 
 print(f"These are the movies currently in {temp_library.name}:")
 for movie in temp_library.movieRegister:
-    print(f"Title: {movie.title}, Author: {movie.author}, Purchase price: {movie.purchasePrice}:-, Purchase year: {movie.purchaseYear}, Number of pages: {movie.lengthMinutes}, Condition: {movie.condition}\n")
+    print(f"Title: {movie.title}, Author: {movie.author}, Purchase price: {movie.purchasePrice}:-, Purchase year: {movie.purchaseYear}, Length in minutes: {movie.lengthMinutes}, Condition: {movie.condition}, Value: {movie.value:.2f}:-\n")

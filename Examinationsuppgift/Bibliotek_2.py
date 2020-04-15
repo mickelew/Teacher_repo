@@ -1,11 +1,11 @@
 #Imports
 from datetime import date
+from operator import itemgetter
 
 
 
 
-
-
+#Class and methods for creation and maintenance of library.
 class Library:
     """ Låter användaren skapa sitt biblioteket med namn samt stad.
         Sparar även alla cd-skivor, böcker och filmer användaren registrerar. """
@@ -34,7 +34,7 @@ class Library:
 
         temp_movie = Movie(str(title), str(author), int(purchasePrice), int(purchaseYear), int(lengthMinutes), int(condition))
         self.movieRegister.append(temp_movie)
-
+    
 
 #Superclass
 class mediaAttributes:
@@ -115,7 +115,6 @@ def valueMovie(purchasePrice, purchaseYear, condition):
 
 
 #Functions for showing all content for each media type
-
 def storedBooks():
     for book in temp_library.bookRegister:
         print((f"Title: {book.title}, "
@@ -126,9 +125,7 @@ def storedBooks():
                 f"Current value: {book.value:.2f}:-\n"))
     print()
 
-def storedCDs():
-    
-    
+def storedCDs():  
     for cd in temp_library.cdRegister:
         print((f"Title: {cd.title}, "
                 f"Author: {cd.author}, "
@@ -162,7 +159,6 @@ def storedMedia():
 
 
 #Functions for the menu
-
 def selectionMenu(name, city):
    
     selection = 0
@@ -209,7 +205,6 @@ def selectionMenu(name, city):
             storedBooks()
         
         elif selection == 5:
-            
             print("These are the CD's currently in the registry:\n")
             storedCDs()
         
@@ -222,27 +217,28 @@ def selectionMenu(name, city):
             storedMedia()
         
         elif selection == 8:
+            
+            with open("my_cd_library.txt", "wt") as My_File:
+                for cd in temp_library.cdRegister:
+                    My_File.write("%s\n" % cd.__dict__)
+
+            with open("my_book_library.txt", "wt") as My_File:
+                for book in temp_library.bookRegister:
+                    My_File.write("%s\n" % book.__dict__)
+
+            with open("my_movie_library.txt", "wt") as My_File:
+                for movie in temp_library.movieRegister:
+                    My_File.write("%s\n" % movie.__dict__)
+            
+            print("\nCD's, books and movies have been successfully saved.\n")
+
             exit()
 
         else:
             print("Invalid choice. Enter 1-8.")
         
         mainMenu(name, city)
-        
-def sortingCD():
 
-    print("\nWould you like to sort the list by:\n")
-    print("1. Title")
-    print("2. Current value")
-
-    selection = int(input("\nEnter choice: "))
-    if selection == 1:
-        sortedCD = sorted(temp_library.cdRegister, key=lambda k: k['title'])
-    elif selection == 2:
-        sortedCD = sorted(temp_library.cdRegister, key=lambda k: k['value'])
-    else:
-        print("Invalid choice. Enter 1-2.")
-    sortingCD()
 
 def mainMenu(name, city):
     

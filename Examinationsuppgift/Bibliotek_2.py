@@ -127,13 +127,15 @@ def storedBooks():
     print()
 
 def storedCDs():
+    
+    
     for cd in temp_library.cdRegister:
         print((f"Title: {cd.title}, "
                 f"Author: {cd.author}, "
                 f"Purchase price: {cd.purchasePrice}:-, "
                 f"Purchase year: {cd.purchaseYear}, "
-                f"Number of pages: {cd.numberOfTracks}, "
-                f"Current value: {cd.value}:-\n"))
+                f"Number of tracks: {cd.numberOfTracks}, "
+                f"Current value: {cd.value:.2f}:-\n"))
     print()
 
 def storedMovies():
@@ -162,10 +164,7 @@ def storedMedia():
 #Functions for the menu
 
 def selectionMenu(name, city):
-    
-    libraryName = name
-    libraryCity = city
-
+   
     selection = 0
 
     while selection != 8:
@@ -210,6 +209,7 @@ def selectionMenu(name, city):
             storedBooks()
         
         elif selection == 5:
+            
             print("These are the CD's currently in the registry:\n")
             storedCDs()
         
@@ -227,8 +227,23 @@ def selectionMenu(name, city):
         else:
             print("Invalid choice. Enter 1-8.")
         
-        mainMenu(libraryName, libraryCity)
+        mainMenu(name, city)
         
+def sortingCD():
+
+    print("\nWould you like to sort the list by:\n")
+    print("1. Title")
+    print("2. Current value")
+
+    selection = int(input("\nEnter choice: "))
+    if selection == 1:
+        sortedCD = sorted(temp_library.cdRegister, key=lambda k: k['title'])
+    elif selection == 2:
+        sortedCD = sorted(temp_library.cdRegister, key=lambda k: k['value'])
+    else:
+        print("Invalid choice. Enter 1-2.")
+    sortingCD()
+
 def mainMenu(name, city):
     
     print(f"\nWelcome to {name} in {city}.\nWhat would you like to do?\n")

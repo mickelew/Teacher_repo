@@ -1,7 +1,6 @@
 #Imports
 from datetime import date
-from operator import itemgetter
-
+import os.path
 
 
 
@@ -254,9 +253,35 @@ def mainMenu(name, city):
     selectionMenu(name, city)
     
 
+#Functions for import of file.
+def importCD():
+    if os.path.isfile("my_cd_library.txt") == True:
+        with open("my_cd_library.txt", "r") as My_File:
+            for line in My_File:
+                temp_library.cdRegister.append(line)           
+    else:
+        print("No such file.")
+
+def importBook():
+    if os.path.isfile("my_book_library.txt") == True:
+        with open("my_book_library.txt", "r") as My_File:
+            for line in My_File:
+                temp_library.bookRegister.append(line)
+    else:
+        print("No such file.")
+
+def importMovie():
+    if os.path.isfile("my_movie_library.txt") == True:
+        with open("my_movie_library.txt", "r") as My_File:
+            for line in My_File:
+                temp_library.movieRegister.append(line)
+    else:
+        print("No such file.")
+
+#Initializing program
 print("Enter your library's name and city:\n")
 name = input(str("Name: "))
 city = input(str("City: "))
 temp_library = Library(str(name), str(city))
-    
+ 
 mainMenu(temp_library.name, temp_library.city)

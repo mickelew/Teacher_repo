@@ -121,7 +121,7 @@ def storedBooks():
                 f"Purchase price: {book.purchasePrice}:-, "
                 f"Purchase year: {book.purchaseYear}, "
                 f"Number of pages: {book.numberOfPages}, "
-                f"Current value: {book.value:.2f}:-\n"))
+                f"Current value: {book.value:.2f}:-"))
     print()
 
 def storedCDs():  
@@ -131,7 +131,7 @@ def storedCDs():
                 f"Purchase price: {cd.purchasePrice}:-, "
                 f"Purchase year: {cd.purchaseYear}, "
                 f"Number of tracks: {cd.numberOfTracks}, "
-                f"Current value: {cd.value:.2f}:-\n"))
+                f"Current value: {cd.value:.2f}:-"))
     print()
 
 def storedMovies():
@@ -142,7 +142,7 @@ def storedMovies():
                 f"Purchase year: {movie.purchaseYear}, "
                 f"Length in minutes: {movie.lengthMinutes}, "
                 f"Condition: {movie.condition}, "
-                f"Current value: {movie.value:.2f}:-\n")
+                f"Current value: {movie.value:.2f}:-")
     print()
 
 def storedMedia():
@@ -255,7 +255,7 @@ def mainMenu(name, city):
 
 #Functions for import of file.
 def importCD():
-    if os.path.isfile("my_cd_library.txt") == True:
+    if os.path.isfile("my_cd_library.txt"):
         with open("my_cd_library.txt", "r") as My_File:
             for line in My_File:
                 temp_library.cdRegister.append(line)        
@@ -263,7 +263,7 @@ def importCD():
         print("No such file.")
 
 def importBook():
-    if os.path.isfile("my_book_library.txt") == True:
+    if os.path.isfile("my_book_library.txt"):
         with open("my_book_library.txt", "r") as My_File:
             for line in My_File:
                 temp_library.bookRegister.append(line)
@@ -271,7 +271,7 @@ def importBook():
         print("No such file.")
 
 def importMovie():
-    if os.path.isfile("my_movie_library.txt") == True:
+    if os.path.isfile("my_movie_library.txt"):
         with open("my_movie_library.txt", "r") as My_File:
             for line in My_File:
                 temp_library.movieRegister.append(line)
@@ -283,10 +283,5 @@ print("Enter your library's name and city:\n")
 name = input(str("Name: "))
 city = input(str("City: "))
 temp_library = Library(str(name), str(city))
-
-importCD()
-
-for cd in temp_library.cdRegister:
-    print(cd)
 
 mainMenu(temp_library.name, temp_library.city)

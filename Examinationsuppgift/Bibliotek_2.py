@@ -219,15 +219,15 @@ def selectionMenu(name, city):
             
             with open("my_cd_library.txt", "wt") as My_File:
                 for cd in temp_library.cdRegister:
-                    My_File.write("%s\n" % cd.__dict__)
+                    My_File.write("%s\n" % vars(cd))
 
             with open("my_book_library.txt", "wt") as My_File:
                 for book in temp_library.bookRegister:
-                    My_File.write("%s\n" % book.__dict__)
+                    My_File.write("%s\n" % vars(book))
 
             with open("my_movie_library.txt", "wt") as My_File:
                 for movie in temp_library.movieRegister:
-                    My_File.write("%s\n" % movie.__dict__)
+                    My_File.write("%s\n" % vars(movie))
             
             print("\nCD's, books and movies have been successfully saved.\n")
 
@@ -283,5 +283,9 @@ print("Enter your library's name and city:\n")
 name = input(str("Name: "))
 city = input(str("City: "))
 temp_library = Library(str(name), str(city))
- 
+
+importCD()
+importBook()
+importMovie()
+
 mainMenu(temp_library.name, temp_library.city)

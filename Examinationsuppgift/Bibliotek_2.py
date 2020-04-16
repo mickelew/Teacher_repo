@@ -206,7 +206,7 @@ def selectionMenu(name, city):
         elif selection == 5:
             print("These are the CD's currently in the registry:\n")
             storedCDs()
-        
+
         elif selection == 6:
             print("These are the movies currently in the registry:\n")
             storedMovies()
@@ -258,7 +258,7 @@ def importCD():
     if os.path.isfile("my_cd_library.txt") == True:
         with open("my_cd_library.txt", "r") as My_File:
             for line in My_File:
-                temp_library.cdRegister.append(line)           
+                temp_library.cdRegister.append(line)        
     else:
         print("No such file.")
 
@@ -285,7 +285,8 @@ city = input(str("City: "))
 temp_library = Library(str(name), str(city))
 
 importCD()
-importBook()
-importMovie()
+
+for cd in temp_library.cdRegister:
+    print(cd)
 
 mainMenu(temp_library.name, temp_library.city)

@@ -188,7 +188,7 @@ def selectionMenu(name, city):
             print(f"\n{title} has been added to the registry.")
 
         elif selection == 3:
-            print("Enter the title, artist, purchase price, year of purchase, length in minutes and condition.")
+            print("Enter the title, director, purchase price, year of purchase, length in minutes and condition.")
             title = str(input("Title: "))
             author = str(input("Director: "))
             purchasePrice = int(input("Purchase price: "))
@@ -219,15 +219,15 @@ def selectionMenu(name, city):
             
             with open("my_cd_library.txt", "w") as My_File:
                 for cd in temp_library.cdRegister:
-                    My_File.write(f"{cd.title},{cd.author},{cd.purchasePrice},{cd.purchaseYear},{cd.numberOfTracks}") 
+                    My_File.write(f"{cd.title},{cd.author},{cd.purchasePrice},{cd.purchaseYear},{cd.numberOfTracks}\n") 
 
             with open("my_book_library.txt", "w") as My_File:
                 for book in temp_library.bookRegister:
-                    My_File.write(f"{book.title},{book.author},{book.purchasePrice},{book.purchaseYear},{book.numberOfPages}")
+                    My_File.write(f"{book.title},{book.author},{book.purchasePrice},{book.purchaseYear},{book.numberOfPages}\n")
 
             with open("my_movie_library.txt", "w") as My_File:
                 for movie in temp_library.movieRegister:
-                    My_File.write(f"{movie.title},{movie.author},{movie.purchasePrice},{movie.purchaseYear},{movie.lengthMinutes},{movie.condition}")
+                    My_File.write(f"{movie.title},{movie.author},{movie.purchasePrice},{movie.purchaseYear},{movie.lengthMinutes},{movie.condition}\n")
             
             print("\nCD's, books and movies have been successfully saved.\n")
 
@@ -255,33 +255,59 @@ def mainMenu(name, city):
 
 #Functions for import of file.
 def importCD():
-    
+
     if os.path.isfile("my_cd_library.txt"):
-        with open("my_cd_library.txt", "r") as My_File:
-            for line in My_File:
-                title, author, purchasePrice, purchaseYear, numberOfTracks = line.split(",")
-                temp_library.add_cd(title, author, purchasePrice, purchaseYear, numberOfTracks)
-                
+        print("\nCD-register found.\nWould you like to import the data?\n\n1. Yes\n2. No\n")
+        
+        importAnswer = int(input("Choose 1 or 2: "))
+        
+        if importAnswer == 1:
+            with open("my_cd_library.txt", "r") as My_File:
+                for line in My_File:
+                    title, author, purchasePrice, purchaseYear, numberOfTracks = line.split(",")
+                    temp_library.add_cd(title, author, purchasePrice, purchaseYear, numberOfTracks)
+        
+        elif importAnswer == 2:
+            print("\nStarting with a fresh register.")        
+    
     else:
         print("No such file.")
 
 def importBook():
 
     if os.path.isfile("my_book_library.txt"):
-        with open("my_book_library.txt", "r") as My_File:
-            for line in My_File:
-                title, author, purchasePrice, purchaseYear, numberOfPages = line.split(",")
-                temp_library.add_book(title, author, purchasePrice, purchaseYear, numberOfPages)
+        print("\nBook-register found.\nWould you like to import the data?\n\n1. Yes\n2. No\n")
+        
+        importAnswer = int(input("Choose 1 or 2: "))
+        
+        if importAnswer == 1:
+            with open("my_book_library.txt", "r") as My_File:
+                for line in My_File:
+                    title, author, purchasePrice, purchaseYear, numberOfPages = line.split(",")
+                    temp_library.add_book(title, author, purchasePrice, purchaseYear, numberOfPages)
+        
+        elif importAnswer == 2:
+            print("\nStarting with a fresh register.")
+
     else:
         print("No such file.")
 
 def importMovie():
 
     if os.path.isfile("my_movie_library.txt"):
-        with open("my_movie_library.txt", "r") as My_File:
-            for line in My_File:
-                title, author, purchasePrice, purchaseYear, lengthMinutes, condition = line.split(",")
-                temp_library.add_movie(title, author, purchasePrice, purchaseYear, lengthMinutes, condition)
+        print("\nMovie-register found.\nWould you like to import the data?\n\n1. Yes\n2. No\n")
+        
+        importAnswer = int(input("Choose 1 or 2: "))
+        
+        if importAnswer == 1:
+            with open("my_movie_library.txt", "r") as My_File:
+                for line in My_File:
+                    title, author, purchasePrice, purchaseYear, lengthMinutes, condition = line.split(",")
+                    temp_library.add_movie(title, author, purchasePrice, purchaseYear, lengthMinutes, condition)
+
+        elif importAnswer == 2:
+            print("\nStarting with a fresh register.")
+
     else:
         print("No such file.")
 

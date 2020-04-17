@@ -100,6 +100,10 @@ def valueCD(title, author, purchasePrice):
             duplicateCD += 1
     
     value = purchasePrice // duplicateCD
+
+    for cd in temp_library.cdRegister:
+        cd.value = value
+    
     return value
 
 def valueMovie(purchasePrice, purchaseYear, condition):
@@ -268,7 +272,11 @@ def importCD():
                     temp_library.add_cd(title, author, purchasePrice, purchaseYear, numberOfTracks)
         
         elif importAnswer == 2:
-            print("\nStarting with a fresh register.")        
+            print("\nStarting with a fresh register.")
+
+        else:
+            print("\nInvalid choice. Enter 1 or 2.")
+            importCD()        
     
     else:
         print("No such file.")
@@ -288,6 +296,10 @@ def importBook():
         
         elif importAnswer == 2:
             print("\nStarting with a fresh register.")
+        
+        else:
+            print("\nInvalid choice. Enter 1 or 2.")
+            importBook()
 
     else:
         print("No such file.")
@@ -307,6 +319,10 @@ def importMovie():
 
         elif importAnswer == 2:
             print("\nStarting with a fresh register.")
+        
+        else:
+            print("\nInvalid choice. Enter 1 or 2.")
+            importMovie()
 
     else:
         print("No such file.")

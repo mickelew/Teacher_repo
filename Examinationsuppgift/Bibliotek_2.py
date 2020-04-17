@@ -217,17 +217,17 @@ def selectionMenu(name, city):
         
         elif selection == 8:
             
-            with open("my_cd_library.txt", "wt") as My_File:
+            with open("my_cd_library.txt", "w") as My_File:
                 for cd in temp_library.cdRegister:
-                    My_File.write("%s\n" % vars(cd))
+                    My_File.write(f"'{cd.title}', '{cd.author}', {cd.purchasePrice}, {cd.purchaseYear}, {cd.numberOfTracks}") 
 
-            with open("my_book_library.txt", "wt") as My_File:
+            with open("my_book_library.txt", "w") as My_File:
                 for book in temp_library.bookRegister:
-                    My_File.write("%s\n" % vars(book))
+                    My_File.write(f"{book.title}, {book.author}, {book.purchasePrice}, {book.purchaseYear}, {book.numberOfPages}")
 
-            with open("my_movie_library.txt", "wt") as My_File:
+            with open("my_movie_library.txt", "w") as My_File:
                 for movie in temp_library.movieRegister:
-                    My_File.write("%s\n" % vars(movie))
+                    My_File.write(f"{movie.title}, {movie.author}, {movie.purchasePrice}, {movie.purchaseYear}, {movie.lengthMinutes}, {movie.condition}")
             
             print("\nCD's, books and movies have been successfully saved.\n")
 
@@ -258,7 +258,8 @@ def importCD():
     if os.path.isfile("my_cd_library.txt"):
         with open("my_cd_library.txt", "r") as My_File:
             for line in My_File:
-                temp_library.cdRegister.append(line)        
+                temp_library.add_cd(line)
+                
     else:
         print("No such file.")
 
@@ -266,7 +267,7 @@ def importBook():
     if os.path.isfile("my_book_library.txt"):
         with open("my_book_library.txt", "r") as My_File:
             for line in My_File:
-                temp_library.bookRegister.append(line)
+                temp_library.add_book(line)
     else:
         print("No such file.")
 
@@ -274,14 +275,19 @@ def importMovie():
     if os.path.isfile("my_movie_library.txt"):
         with open("my_movie_library.txt", "r") as My_File:
             for line in My_File:
-                temp_library.movieRegister.append(line)
+                temp_library.add_movie(line)
     else:
         print("No such file.")
+
+
 
 #Initializing program
 print("Enter your library's name and city:\n")
 name = input(str("Name: "))
 city = input(str("City: "))
 temp_library = Library(str(name), str(city))
+
+
+#importCD()
 
 mainMenu(temp_library.name, temp_library.city)

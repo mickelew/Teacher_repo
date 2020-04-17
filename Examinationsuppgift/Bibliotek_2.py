@@ -219,7 +219,7 @@ def selectionMenu(name, city):
             
             with open("my_cd_library.txt", "w") as My_File:
                 for cd in temp_library.cdRegister:
-                    My_File.write(f"'{cd.title}', '{cd.author}', {cd.purchasePrice}, {cd.purchaseYear}, {cd.numberOfTracks}") 
+                    My_File.write(f"{cd.title}, {cd.author}, {cd.purchasePrice}, {cd.purchaseYear}, {cd.numberOfTracks}") 
 
             with open("my_book_library.txt", "w") as My_File:
                 for book in temp_library.bookRegister:
@@ -258,7 +258,8 @@ def importCD():
     if os.path.isfile("my_cd_library.txt"):
         with open("my_cd_library.txt", "r") as My_File:
             for line in My_File:
-                temp_library.add_cd(line)
+                test = line.split(",")
+                print(test)
                 
     else:
         print("No such file.")
@@ -288,6 +289,6 @@ city = input(str("City: "))
 temp_library = Library(str(name), str(city))
 
 
-#importCD()
+importCD()
 
 mainMenu(temp_library.name, temp_library.city)

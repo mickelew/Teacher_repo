@@ -1,7 +1,8 @@
 #Importer
-from datetime import date
-import os.path
-from operator import attrgetter
+from datetime import date           #Används för att ta reda på aktuellt år.
+import os.path                      #Används för att testa om fil finns för import när programmet startar.
+from operator import attrgetter     #Används för att kunna sortera listor efter valt nyckelord.
+
 
 
 #Klasser och metoder för att skapa och underhålla biblioteket.

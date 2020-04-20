@@ -54,7 +54,8 @@ class CD(mediaAttributes):
     def __init__(self, title, author, purchasePrice, purchaseYear, numberOfTracks):
         super().__init__(title, author, purchasePrice, purchaseYear)
         self.numberOfTracks = numberOfTracks
-        self.value = valueCD(title, author, purchasePrice)
+        self.copies = copiesCD(title, author)
+        self.value = purchasePrice // self.copies
 
 class Book(mediaAttributes):
     """ Kräver de fyra gemensamma attributen från mediaAttributes, samt numberOfPages. 
@@ -90,21 +91,16 @@ def valueBook(purchasePrice, purchaseYear):
         value = purchasePrice*1.08**(age-50)
     return value
 
-def valueCD(title, author, purchasePrice):
-    """ Letar efter dubbletter i cd-registret och gör en beräkning av värdet
-        utifrån hur många kopior av samma cd som redan finns lagrat. """
+def copiesCD(title, author):
+    """ Letar efter dubbletter i cd-registret och returnerar
+        hur många kopior av samma cd som redan finns lagrat. """
 
     duplicateCD = 1
     for cd in temp_library.cdRegister:
         if cd.title.casefold() == title.casefold() and cd.author.casefold() == author.casefold():
             duplicateCD += 1
-    
-    value = purchasePrice // duplicateCD
 
-    for cd in temp_library.cdRegister:
-        cd.value = value
-    
-    return value
+    return duplicateCD
 
 def valueMovie(purchasePrice, purchaseYear, condition):
     """ Gör en beräkning av värdet utifrån filmens inköpspris, ålder 
@@ -119,34 +115,47 @@ def valueMovie(purchasePrice, purchaseYear, condition):
 
 #Functions for showing all content for each media type
 def storedBooks():
+    """ Visar de specificerade värdena för böckerna i bookRegister. """
+
     for book in temp_library.bookRegister:
-        print((f"Title: {book.title}, "
-                f"Author: {book.author}, "
-                f"Purchase price: {book.purchasePrice}:-, "
-                f"Purchase year: {book.purchaseYear}, "
-                f"Number of pages: {book.numberOfPages}, "
-                f"Current value: {book.value:.2f}:-"))
+        print((f"| Title: {book.title} | "
+                f"Author: {book.author} | "
+                f"Purchase price: {book.purchasePrice}:- | "
+                f"Purchase year: {book.purchaseYear} | "
+                f"Number of pages: {book.numberOfPages} | "
+                f"Current value: {book.value:.2f}:- |"))
     print()
 
 def storedCDs():  
+    """ Visar de specificerade värdena för cd's i cdRegister.
+        Gör också ett test mot antal kopior i registret, som uppdateras om ny dubblett hittas
+        samt räknar ut värdet utifrån inköpspris och antal kopior."""
+        
     for cd in temp_library.cdRegister:
-        print((f"Title: {cd.title}, "
-                f"Author: {cd.author}, "
-                f"Purchase price: {cd.purchasePrice}:-, "
-                f"Purchase year: {cd.purchaseYear}, "
-                f"Number of tracks: {cd.numberOfTracks}, "
-                f"Current value: {cd.value:.2f}:-"))
+        cd.copies = copiesCD(cd.title, cd.author)
+        cd.copies = cd.copies-1
+                
+    for cd in temp_library.cdRegister:
+        cd.value = cd.purchasePrice // cd.copies
+        print((f"| Title: {cd.title} | "
+                f"Artist: {cd.author} | "
+                f"Purchase price: {cd.purchasePrice}:- | "
+                f"Purchase year: {cd.purchaseYear} | "
+                f"Number of tracks: {cd.numberOfTracks} | "
+                f"Current value: {cd.value:.2f}:- |"))
     print()
 
 def storedMovies():
+    """ Visar de specificerade värdena för filmerna i movieRegister. """
+
     for movie in temp_library.movieRegister:
-        print(f"Title: {movie.title}, "
-                f"Director: {movie.author}, "
-                f"Purchase price: {movie.purchasePrice}:-, "
-                f"Purchase year: {movie.purchaseYear}, "
-                f"Length in minutes: {movie.lengthMinutes}, "
-                f"Condition: {movie.condition}, "
-                f"Current value: {movie.value:.2f}:-")
+        print(f"| Title: {movie.title} | "
+                f"Director: {movie.author} | "
+                f"Purchase price: {movie.purchasePrice}:- | "
+                f"Purchase year: {movie.purchaseYear} | "
+                f"Length in minutes: {movie.lengthMinutes} | "
+                f"Condition: {movie.condition} | "
+                f"Current value: {movie.value:.2f}:- |")
     print()
 
 def storedMedia():
@@ -223,15 +232,28 @@ def selectionMenu(name, city):
             
             with open("my_cd_library.txt", "w") as My_File:
                 for cd in temp_library.cdRegister:
-                    My_File.write(f"{cd.title},{cd.author},{cd.purchasePrice},{cd.purchaseYear},{cd.numberOfTracks}\n") 
+                    My_File.write(f"{cd.title},"
+                                    f"{cd.author},"
+                                    f"{cd.purchasePrice},"
+                                    f"{cd.purchaseYear},"
+                                    f"{cd.numberOfTracks}\n") 
 
             with open("my_book_library.txt", "w") as My_File:
                 for book in temp_library.bookRegister:
-                    My_File.write(f"{book.title},{book.author},{book.purchasePrice},{book.purchaseYear},{book.numberOfPages}\n")
+                    My_File.write(f"{book.title},"
+                                    f"{book.author},"
+                                    f"{book.purchasePrice},"
+                                    f"{book.purchaseYear},"
+                                    f"{book.numberOfPages}\n")
 
             with open("my_movie_library.txt", "w") as My_File:
                 for movie in temp_library.movieRegister:
-                    My_File.write(f"{movie.title},{movie.author},{movie.purchasePrice},{movie.purchaseYear},{movie.lengthMinutes},{movie.condition}\n")
+                    My_File.write(f"{movie.title},"
+                                    f"{movie.author},"
+                                    f"{movie.purchasePrice},"
+                                    f"{movie.purchaseYear},"
+                                    f"{movie.lengthMinutes},"
+                                    f"{movie.condition}\n")
             
             print("\nCD's, books and movies have been successfully saved.\n")
 
@@ -259,12 +281,14 @@ def mainMenu(name, city):
 
 #Functions for import of file.
 def importCD():
+    """ Testar om fil finns för inläsning, om svaret är sant får användaren välja om de vill importera
+        filen eller ej. """
 
     if os.path.isfile("my_cd_library.txt"):
         print("\nCD-register found.\nWould you like to import the data?\n\n1. Yes\n2. No\n")
         
         importAnswer = int(input("Choose 1 or 2: "))
-        
+                
         if importAnswer == 1:
             with open("my_cd_library.txt", "r") as My_File:
                 for line in My_File:
@@ -282,6 +306,8 @@ def importCD():
         print("No such file.")
 
 def importBook():
+    """ Testar om fil finns för inläsning, om svaret är sant får användaren välja om de vill importera
+        filen eller ej. """
 
     if os.path.isfile("my_book_library.txt"):
         print("\nBook-register found.\nWould you like to import the data?\n\n1. Yes\n2. No\n")
@@ -305,6 +331,8 @@ def importBook():
         print("No such file.")
 
 def importMovie():
+    """ Testar om fil finns för inläsning, om svaret är sant får användaren välja om de vill importera
+        filen eller ej. """
 
     if os.path.isfile("my_movie_library.txt"):
         print("\nMovie-register found.\nWould you like to import the data?\n\n1. Yes\n2. No\n")

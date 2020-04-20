@@ -134,8 +134,7 @@ def storedBooks():
                     f"Number of pages: {sorted_book.numberOfPages} | "
                     f"Current value: {sorted_book.value:.2f}:- |"))
     
-    elif selection == 2:
-        
+    elif selection == 2:        
         print("\nThese are the books currently in the registry:\n")
         
         sortbyValue = sorted(temp_library.bookRegister, key = attrgetter('value'), reverse=True)
@@ -221,7 +220,6 @@ def storedMovies():
                     f"Current value: {sorted_movie.value:.2f}:- |"))
     
     elif selection == 2:
-        
         print("\nThese are the movies currently in the registry:\n")
         
         sortbyValue = sorted(temp_library.movieRegister, key = attrgetter('value'), reverse=True)
@@ -303,7 +301,6 @@ def selectionMenu(name, city):
             storedMovies()
 
         elif selection == 7:
-            print("This is everything currently in the registry:\n")
             storedMedia()
         
         elif selection == 8:

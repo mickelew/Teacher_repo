@@ -123,28 +123,28 @@ def storedBooks():
     selection = int(input("\nEnter choice: "))
     if selection == 1:
         
-        print("\nThese are the books currently in the registry:\n")
+        print("\nThese are the books currently in the registry:")
         
         sortbyTitle = sorted(temp_library.bookRegister, key=attrgetter('title'))
         for sorted_book in sortbyTitle:
-            print((f"| Title: {sorted_book.title} | "
-                    f"Author: {sorted_book.author} | "
+            print((f"\n  Title: {sorted_book.title}  \n"
+                    f"  Author: {sorted_book.author} | "
                     f"Purchase price: {sorted_book.purchasePrice}:- | "
                     f"Purchase year: {sorted_book.purchaseYear} | "
                     f"Number of pages: {sorted_book.numberOfPages} | "
-                    f"Current value: {sorted_book.value:.2f}:- |"))
+                    f"Current value: {sorted_book.value:.2f}:- "))
     
     elif selection == 2:        
         print("\nThese are the books currently in the registry:\n")
         
         sortbyValue = sorted(temp_library.bookRegister, key = attrgetter('value'), reverse=True)
         for sorted_book in sortbyValue:
-            print((f"| Title: {sorted_book.title} | "
-                    f"Author: {sorted_book.author} | "
+            print((f"\n  Title: {sorted_book.title}  \n"
+                    f"  Author: {sorted_book.author} | "
                     f"Purchase price: {sorted_book.purchasePrice}:- | "
                     f"Purchase year: {sorted_book.purchaseYear} | "
                     f"Number of pages: {sorted_book.numberOfPages} | "
-                    f"Current value: {sorted_book.value:.2f}:- |"))
+                    f"Current value: {sorted_book.value:.2f}:- "))
     
     else:
         print("Invalid choice. Enter 1 or 2.")
@@ -173,24 +173,24 @@ def storedCDs():
         
         sortbyTitle = sorted(temp_library.cdRegister, key=attrgetter('title'))
         for sorted_cd in sortbyTitle:
-            print((f"| Title: {sorted_cd.title} | "
-                    f"Author: {sorted_cd.author} | "
+            print((f"\n  Title: {sorted_cd.title}  \n"
+                    f"  Author: {sorted_cd.author} | "
                     f"Purchase price: {sorted_cd.purchasePrice}:- | "
                     f"Purchase year: {sorted_cd.purchaseYear} | "
                     f"Number of tracks: {sorted_cd.numberOfTracks} | "
-                    f"Current value: {sorted_cd.value:.2f}:- |"))
+                    f"Current value: {sorted_cd.value:.2f}:- "))
     
     elif selection == 2:
         print("\nThese are the cd's currently in the registry:\n")
         
         sortbyValue = sorted(temp_library.cdRegister, key = attrgetter('value'), reverse=True)
         for sorted_cd in sortbyValue:
-            print((f"| Title: {sorted_cd.title} | "
-                    f"Author: {sorted_cd.author} | "
+            print((f"\n  Title: {sorted_cd.title}  \n"
+                    f"  Author: {sorted_cd.author} | "
                     f"Purchase price: {sorted_cd.purchasePrice}:- | "
                     f"Purchase year: {sorted_cd.purchaseYear} | "
                     f"Number of tracks: {sorted_cd.numberOfTracks} | "
-                    f"Current value: {sorted_cd.value:.2f}:- |"))
+                    f"Current value: {sorted_cd.value:.2f}:- "))
     
     else:
         print("Invalid choice. Enter 1 or 2.")
@@ -211,26 +211,26 @@ def storedMovies():
         
         sortbyTitle = sorted(temp_library.movieRegister, key=attrgetter('title'))
         for sorted_movie in sortbyTitle:
-            print((f"| Title: {sorted_movie.title} | "
-                    f"Director: {sorted_movie.author} | "
+            print((f"\n  Title: {sorted_movie.title}  \n"
+                    f"  Director: {sorted_movie.author} | "
                     f"Purchase price: {sorted_movie.purchasePrice}:- | "
                     f"Purchase year: {sorted_movie.purchaseYear} | "
                     f"Length in minutes: {sorted_movie.lengthMinutes} | "
                     f"Condition: {sorted_movie.condition} | "
-                    f"Current value: {sorted_movie.value:.2f}:- |"))
+                    f"Current value: {sorted_movie.value:.2f}:- "))
     
     elif selection == 2:
         print("\nThese are the movies currently in the registry:\n")
         
         sortbyValue = sorted(temp_library.movieRegister, key = attrgetter('value'), reverse=True)
         for sorted_movie in sortbyValue:
-            print((f"| Title: {sorted_movie.title} | "
-                    f"Director: {sorted_movie.author} | "
+            print((f"\n  Title: {sorted_movie.title}  \n"
+                    f"  Director: {sorted_movie.author} | "
                     f"Purchase price: {sorted_movie.purchasePrice}:- | "
                     f"Purchase year: {sorted_movie.purchaseYear} | "
                     f"Length in minutes: {sorted_movie.lengthMinutes} | "
                     f"Condition: {sorted_movie.condition} | "
-                    f"Current value: {sorted_movie.value:.2f}:- |"))
+                    f"Current value: {sorted_movie.value:.2f}:- "))
     
     else:
         print("Invalid choice. Enter 1 or 2.")

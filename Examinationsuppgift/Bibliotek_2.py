@@ -1,10 +1,10 @@
-#Imports
+#Importer
 from datetime import date
 import os.path
 
 
 
-#Class and methods for creation and maintenance of library.
+#Klasser och metoder för att skapa och underhålla biblioteket.
 class Library:
     """ Låter användaren skapa sitt biblioteket med namn samt stad.
         Sparar även alla cd-skivor, böcker och filmer användaren registrerar. """
@@ -18,7 +18,7 @@ class Library:
         self.movieRegister = []
         
 
-    #Methods
+    #Metoder
     def add_cd(self, title, author, purchasePrice, purchaseYear, numberOfTracks):
         
         temp_cd = CD(str(title), str(author), int(purchasePrice), int(purchaseYear), int(numberOfTracks))
@@ -35,7 +35,7 @@ class Library:
         self.movieRegister.append(temp_movie)
     
 
-#Superclass
+#Superklass
 class mediaAttributes:
     """ Används av mediatyp-klasserna för inhämtning av gemensamma attribut. """
 
@@ -46,7 +46,7 @@ class mediaAttributes:
         self.purchaseYear = purchaseYear
 
 
-#Subclasses
+#Subklasser
 class CD(mediaAttributes):
     """ Kräver de fyra gemensamma attributen från mediaAttributes, samt numberOfTracks. 
         Används när en ny CD ska läggas till i registret. """
@@ -78,7 +78,7 @@ class Movie(mediaAttributes):
         self.value = valueMovie(purchasePrice, purchaseYear, condition)
 
 
-#Functions for determining value of object.
+#Funktioner för att fastställa värdet av ett objekt.
 def valueBook(purchasePrice, purchaseYear):
     """ Gör en beräkning av värdet utifrån bokens ålder och inköpspris. """
 
@@ -113,7 +113,7 @@ def valueMovie(purchasePrice, purchaseYear, condition):
     return value
 
 
-#Functions for showing all content for each media type
+#Funktioner för att visa innehållet av respektive medietyp.
 def storedBooks():
     """ Visar de specificerade värdena för böckerna i bookRegister. """
 
@@ -169,7 +169,7 @@ def storedMedia():
     storedMovies()
 
 
-#Functions for the menu
+#Menyfunktioner
 def selectionMenu(name, city):
    
     selection = 0
@@ -278,10 +278,9 @@ def mainMenu(name, city):
     selectionMenu(name, city)
     
 
-#Functions for import of file.
+#Funktioner för import av fil.
 def importCD():
-    """ Testar om fil finns för inläsning, om svaret är sant får användaren välja om de vill importera
-        filen eller ej. """
+    """ Testar om fil finns, om svaret är sant får användaren välja om de vill importera filen eller ej. """
 
     if os.path.isfile("my_cd_library.txt"):
         print("\nCD-register found.\nWould you like to import the data?\n\n1. Yes\n2. No\n")
@@ -305,8 +304,7 @@ def importCD():
         print("No such file.")
 
 def importBook():
-    """ Testar om fil finns för inläsning, om svaret är sant får användaren välja om de vill importera
-        filen eller ej. """
+    """ Testar om fil finns, om svaret är sant får användaren välja om de vill importera filen eller ej. """
 
     if os.path.isfile("my_book_library.txt"):
         print("\nBook-register found.\nWould you like to import the data?\n\n1. Yes\n2. No\n")
@@ -330,8 +328,7 @@ def importBook():
         print("No such file.")
 
 def importMovie():
-    """ Testar om fil finns för inläsning, om svaret är sant får användaren välja om de vill importera
-        filen eller ej. """
+    """ Testar om fil finns, om svaret är sant får användaren välja om de vill importera filen eller ej. """
 
     if os.path.isfile("my_movie_library.txt"):
         print("\nMovie-register found.\nWould you like to import the data?\n\n1. Yes\n2. No\n")
@@ -356,14 +353,11 @@ def importMovie():
 
 
 
-#Initializing program
+#Initialisering av program.
 print("Enter your library's name and city:\n")
 name = input(str("Name: "))
 city = input(str("City: "))
 temp_library = Library(str(name), str(city))
 
-
-importCD()
-importBook()
-importMovie()
+importCD(), importBook(), importMovie()
 mainMenu(temp_library.name, temp_library.city)

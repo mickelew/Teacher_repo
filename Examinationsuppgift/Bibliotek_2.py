@@ -132,8 +132,7 @@ def storedCDs():
         samt räknar ut värdet utifrån inköpspris och antal kopior."""
         
     for cd in temp_library.cdRegister:
-        cd.copies = copiesCD(cd.title, cd.author)
-        cd.copies = cd.copies-1
+        cd.copies = copiesCD(cd.title, cd.author)-1        
                 
     for cd in temp_library.cdRegister:
         cd.value = cd.purchasePrice // cd.copies

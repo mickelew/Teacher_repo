@@ -1,7 +1,7 @@
 #Importer
 from datetime import date
 import os.path
-
+from operator import attrgetter
 
 
 #Klasser och metoder för att skapa och underhålla biblioteket.
@@ -116,56 +116,136 @@ def valueMovie(purchasePrice, purchaseYear, condition):
 #Funktioner för att visa innehållet av respektive medietyp.
 def storedBooks():
     """ Visar de specificerade värdena för böckerna i bookRegister. """
+    
+    #Val av sortering.
+    print("\nWould you like to sort books by Title or Current Value?\n\n1. Title\n2. Current Value")
+    
+    selection = int(input("\nEnter choice: "))
+    if selection == 1:
+        
+        print("\nThese are the books currently in the registry:\n")
+        
+        sortbyTitle = sorted(temp_library.bookRegister, key=attrgetter('title'))
+        for sorted_book in sortbyTitle:
+            print((f"| Title: {sorted_book.title} | "
+                    f"Author: {sorted_book.author} | "
+                    f"Purchase price: {sorted_book.purchasePrice}:- | "
+                    f"Purchase year: {sorted_book.purchaseYear} | "
+                    f"Number of pages: {sorted_book.numberOfPages} | "
+                    f"Current value: {sorted_book.value:.2f}:- |"))
+    
+    elif selection == 2:
+        
+        print("\nThese are the books currently in the registry:\n")
+        
+        sortbyValue = sorted(temp_library.bookRegister, key = attrgetter('value'), reverse=True)
+        for sorted_book in sortbyValue:
+            print((f"| Title: {sorted_book.title} | "
+                    f"Author: {sorted_book.author} | "
+                    f"Purchase price: {sorted_book.purchasePrice}:- | "
+                    f"Purchase year: {sorted_book.purchaseYear} | "
+                    f"Number of pages: {sorted_book.numberOfPages} | "
+                    f"Current value: {sorted_book.value:.2f}:- |"))
+    
+    else:
+        print("Invalid choice. Enter 1 or 2.")
+        storedBooks()
 
-    for book in temp_library.bookRegister:
-        print((f"| Title: {book.title} | "
-                f"Author: {book.author} | "
-                f"Purchase price: {book.purchasePrice}:- | "
-                f"Purchase year: {book.purchaseYear} | "
-                f"Number of pages: {book.numberOfPages} | "
-                f"Current value: {book.value:.2f}:- |"))
     print()
 
 def storedCDs():  
     """ Visar de specificerade värdena för cd's i cdRegister.
         Gör också ett test mot antal kopior i registret, som uppdateras om ny dubblett hittas
         samt räknar ut värdet utifrån inköpspris och antal kopior."""
-        
+
+    #Kontroll av kopior samt uträkning.    
     for cd in temp_library.cdRegister:
         cd.copies = copiesCD(cd.title, cd.author)-1        
-                
+    
     for cd in temp_library.cdRegister:
         cd.value = cd.purchasePrice // cd.copies
-        print((f"| Title: {cd.title} | "
-                f"Artist: {cd.author} | "
-                f"Purchase price: {cd.purchasePrice}:- | "
-                f"Purchase year: {cd.purchaseYear} | "
-                f"Number of tracks: {cd.numberOfTracks} | "
-                f"Current value: {cd.value:.2f}:- |"))
+    
+    #Val av sortering.            
+    print("\nWould you like to sort cd's by Title or Current Value?\n\n1. Title\n2. Current Value")
+    
+    selection = int(input("\nEnter choice: "))
+    if selection == 1:
+        print("\nThese are the cd's currently in the registry:\n")
+        
+        sortbyTitle = sorted(temp_library.cdRegister, key=attrgetter('title'))
+        for sorted_cd in sortbyTitle:
+            print((f"| Title: {sorted_cd.title} | "
+                    f"Author: {sorted_cd.author} | "
+                    f"Purchase price: {sorted_cd.purchasePrice}:- | "
+                    f"Purchase year: {sorted_cd.purchaseYear} | "
+                    f"Number of tracks: {sorted_cd.numberOfTracks} | "
+                    f"Current value: {sorted_cd.value:.2f}:- |"))
+    
+    elif selection == 2:
+        print("\nThese are the cd's currently in the registry:\n")
+        
+        sortbyValue = sorted(temp_library.cdRegister, key = attrgetter('value'), reverse=True)
+        for sorted_cd in sortbyValue:
+            print((f"| Title: {sorted_cd.title} | "
+                    f"Author: {sorted_cd.author} | "
+                    f"Purchase price: {sorted_cd.purchasePrice}:- | "
+                    f"Purchase year: {sorted_cd.purchaseYear} | "
+                    f"Number of tracks: {sorted_cd.numberOfTracks} | "
+                    f"Current value: {sorted_cd.value:.2f}:- |"))
+    
+    else:
+        print("Invalid choice. Enter 1 or 2.")
+        storedCDs()
+    
     print()
 
 def storedMovies():
     """ Visar de specificerade värdena för filmerna i movieRegister. """
 
-    for movie in temp_library.movieRegister:
-        print(f"| Title: {movie.title} | "
-                f"Director: {movie.author} | "
-                f"Purchase price: {movie.purchasePrice}:- | "
-                f"Purchase year: {movie.purchaseYear} | "
-                f"Length in minutes: {movie.lengthMinutes} | "
-                f"Condition: {movie.condition} | "
-                f"Current value: {movie.value:.2f}:- |")
+    #Val av sortering.
+    print("\nWould you like to sort movies by Title or Current Value?\n\n1. Title\n2. Current Value")
+    
+    selection = int(input("\nEnter choice: "))
+    if selection == 1:
+        
+        print("\nThese are the movies currently in the registry:\n")
+        
+        sortbyTitle = sorted(temp_library.movieRegister, key=attrgetter('title'))
+        for sorted_movie in sortbyTitle:
+            print((f"| Title: {sorted_movie.title} | "
+                    f"Director: {sorted_movie.author} | "
+                    f"Purchase price: {sorted_movie.purchasePrice}:- | "
+                    f"Purchase year: {sorted_movie.purchaseYear} | "
+                    f"Length in minutes: {sorted_movie.lengthMinutes} | "
+                    f"Condition: {sorted_movie.condition} | "
+                    f"Current value: {sorted_movie.value:.2f}:- |"))
+    
+    elif selection == 2:
+        
+        print("\nThese are the movies currently in the registry:\n")
+        
+        sortbyValue = sorted(temp_library.movieRegister, key = attrgetter('value'), reverse=True)
+        for sorted_movie in sortbyValue:
+            print((f"| Title: {sorted_movie.title} | "
+                    f"Director: {sorted_movie.author} | "
+                    f"Purchase price: {sorted_movie.purchasePrice}:- | "
+                    f"Purchase year: {sorted_movie.purchaseYear} | "
+                    f"Length in minutes: {sorted_movie.lengthMinutes} | "
+                    f"Condition: {sorted_movie.condition} | "
+                    f"Current value: {sorted_movie.value:.2f}:- |"))
+    
+    else:
+        print("Invalid choice. Enter 1 or 2.")
+        storedMovies()
+    
     print()
 
 def storedMedia():
     
-    print("Books: \n")
     storedBooks()
 
-    print("CD's: \n")
     storedCDs()
 
-    print("Movies: \n")
     storedMovies()
 
 
@@ -212,7 +292,6 @@ def selectionMenu(name, city):
             print(f"\n{title} has been added to the registry.")                        
             
         elif selection == 4:
-            print("These are the books currently in the registry:\n")
             storedBooks()
         
         elif selection == 5:

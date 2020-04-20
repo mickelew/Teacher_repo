@@ -113,7 +113,7 @@ def valueMovie(purchasePrice, purchaseYear, condition):
     return value
 
 
-#Funktioner för att visa innehållet av respektive medietyp.
+#Funktioner för att visa innehållet samt sortering av respektive medietyp.
 def storedBooks():
     """ Visar de specificerade värdena för böckerna i bookRegister. """
     
@@ -257,8 +257,8 @@ def selectionMenu(name, city):
         selection = int(input("\nEnter choice: "))
         if selection == 1:
             print("Enter the title, author, purchase price, year of purchase and number of pages.")
-            title = str(input("Title: "))
-            author = str(input("Author: "))
+            title = str(input("Title: ")).title()
+            author = str(input("Author: ")).title()
             purchasePrice = int(input("Purchase price: "))
             purchaseYear =  int(input("Year of purchase: "))
             numberOfPages = int(input("Number of pages: "))
@@ -268,8 +268,8 @@ def selectionMenu(name, city):
         
         elif selection == 2:
             print("Enter the title, artist, purchase price, year of purchase and number of tracks.")
-            title = str(input("Title: "))
-            author = str(input("Artist: "))
+            title = str(input("Title: ")).title()
+            author = str(input("Artist: ")).title()
             purchasePrice = int(input("Purchase price: "))
             purchaseYear =  int(input("Year of purchase: "))
             numberOfTracks = int(input("Number of tracks: "))
@@ -279,8 +279,8 @@ def selectionMenu(name, city):
 
         elif selection == 3:
             print("Enter the title, director, purchase price, year of purchase, length in minutes and condition.")
-            title = str(input("Title: "))
-            author = str(input("Director: "))
+            title = str(input("Title: ")).title()
+            author = str(input("Director: ")).title()
             purchasePrice = int(input("Purchase price: "))
             purchaseYear =  int(input("Year of purchase: "))
             lengthMinutes = int(input("Length in minutes: "))

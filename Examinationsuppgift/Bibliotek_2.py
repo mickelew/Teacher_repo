@@ -1,11 +1,11 @@
-#Importer
+#Import
 from datetime import date           #Används för att ta reda på aktuellt år.
 import os.path                      #Används för att testa om fil finns för import när programmet startar.
 from operator import attrgetter     #Används för att kunna sortera listor efter valt nyckelord.
 
 
 
-#Klasser och metoder för att skapa och underhålla biblioteket.
+#Klass och metoder för att skapa och underhålla biblioteket.
 class Library:
     """ Låter användaren skapa sitt biblioteket med namn samt stad.
         Sparar även alla cd-skivor, böcker och filmer användaren registrerar. """
@@ -36,7 +36,7 @@ class Library:
         self.movieRegister.append(temp_movie)
     
 
-#Superklass
+#Superklass - Gemensamma attribut när media skapas.
 class mediaAttributes:
     """ Används av mediatyp-klasserna för inhämtning av gemensamma attribut. """
 
@@ -47,7 +47,7 @@ class mediaAttributes:
         self.purchaseYear = purchaseYear
 
 
-#Subklasser
+#Subklasser - Specifika attribut för varje enskilt media.
 class CD(mediaAttributes):
     """ Kräver de fyra gemensamma attributen från mediaAttributes, samt numberOfTracks. 
         Används när en ny CD ska läggas till i registret. """

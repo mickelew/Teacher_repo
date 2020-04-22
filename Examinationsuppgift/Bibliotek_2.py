@@ -1,3 +1,16 @@
+
+#   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #                                                         
+#                                                                       # 
+#   Examinationsuppgift "Programmering i Python".                       #
+#                                                                       #
+#   Låter en användare skapa ett bibliotek samt importera, exportera    #
+#   och registrera olike mediatyper.                                    #
+#                                                                       #
+#   Skapad av: Michael Levin                                            #
+#                                                                       #
+#   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #
+
+
 #Import
 from datetime import date           #Används för att ta reda på aktuellt år.
 import os.path                      #Används för att testa om fil finns för import när programmet startar.

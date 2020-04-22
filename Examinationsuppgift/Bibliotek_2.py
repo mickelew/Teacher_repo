@@ -391,7 +391,7 @@ def importCD():
             importCD()        
     
     else:
-        print("No such file.")
+        print("Nothing to import.")
 
 def importBook():
     """ Testar om fil finns, om svaret är sant får användaren välja om de vill importera filen eller ej. """
@@ -415,7 +415,7 @@ def importBook():
             importBook()
 
     else:
-        print("No such file.")
+        print("Nothing to import.")
 
 def importMovie():
     """ Testar om fil finns, om svaret är sant får användaren välja om de vill importera filen eller ej. """
@@ -439,7 +439,7 @@ def importMovie():
             importMovie()
 
     else:
-        print("No such file.")
+        print("Nothing to import.")
 
 
 
